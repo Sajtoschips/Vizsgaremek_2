@@ -3,7 +3,7 @@
       <div class="col-md-12">
         <div class="card" v-if="data.cartItems.length === 0">
           <div class="card-body text-center">
-            <p>Your cart is empty</p>
+            <h1>A kosár tartalma üres!</h1>
           </div>
         </div>
         <div class="card" v-else>
@@ -51,7 +51,7 @@
                 <td>
                   <i
                     @click="data.removeFromCart(item)"
-                    class="bi bi-cart-x text-danger"
+                    class="bi bi-cart-x text-danger torles"
                   ></i>
                 </td>
               </tr>
@@ -87,5 +87,8 @@ const data = useShoppingStore();
 <style scoped>
 i{
     cursor: pointer;
+}
+.torles{
+  
 }
 </style>
