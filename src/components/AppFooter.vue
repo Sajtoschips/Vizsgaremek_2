@@ -32,5 +32,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+.footer{
+  bottom: 0;
+}
 </style>

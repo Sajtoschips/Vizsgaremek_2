@@ -25,7 +25,6 @@ export const useShoppingStore = defineStore("cart", {
     fetchProducts() {
       Axios.get("/products")
         .then((resp) => {
-          // Feltételezve, hogy a válasz adatok egy termékek tömbje
           this.products = resp.data;
         })
         .catch((err) => {

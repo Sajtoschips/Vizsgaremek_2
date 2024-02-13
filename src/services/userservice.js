@@ -4,7 +4,7 @@ export default {
   registerUser(data) {
     return Axios.post('/register', data)
       .then(resp => {
-        // console.log(resp);
+        console.log(resp);
         return resp;
       })
       .catch(err => {
@@ -30,5 +30,4 @@ export default {
         return Promise.reject(err.response);
       })
   }
-
 }

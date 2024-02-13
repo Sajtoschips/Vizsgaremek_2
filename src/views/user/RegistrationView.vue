@@ -87,7 +87,6 @@ const regForm = ref({
   email: '',
   password: '',
   confirm_password:'',
-  role: 0
 });
 
 const regSuccess = ref(false);
