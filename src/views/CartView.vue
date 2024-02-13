@@ -51,7 +51,7 @@
                 <td>
                   <i
                     @click="data.removeFromCart(item)"
-                    class="bi bi-cart-x text-danger"
+                    class="bi bi-cart-x text-danger torles"
                   ></i>
                 </td>
               </tr>
@@ -87,5 +87,8 @@ const data = useShoppingStore();
 <style scoped>
 i{
     cursor: pointer;
+}
+.torles{
+  
 }
 </style>

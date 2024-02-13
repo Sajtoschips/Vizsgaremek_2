@@ -38,11 +38,11 @@ export const useShoppingStore = defineStore("cart", {
       );
       if (index !== -1) {
         this.cartItems[index].quantity += 1;
-        toast.success("Your item has been updated");
+        toast.success("A termék frissítve a kosárhoz!");
       } else {
         item.quantity = 1;
         this.cartItems.push(item);
-        toast.success("Your item has been added to cart");
+        toast.success("A termék hozzáadva a kosárhoz!");
       }
     },
     incrementQ(item) {
@@ -70,6 +70,7 @@ export const useShoppingStore = defineStore("cart", {
       this.cartItems = this.cartItems.filter(
         (product) => product.ProductNumber !== item.ProductNumber
       );
+      toast.error("A termék törölve a kosárból!");
     },
   },
 });
