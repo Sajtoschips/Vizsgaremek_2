@@ -13,7 +13,7 @@
               id="email" 
               placeholder="E-mail" 
               v-model="loginForm.email">
-            <label for="name">Név</label>
+            <label for="name">Email</label>
           </div>
           <div class="form-floating mb-3">
             <input 

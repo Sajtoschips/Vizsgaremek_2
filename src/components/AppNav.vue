@@ -25,6 +25,8 @@
               <div class="dropdown">
                 <a id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><ion-icon
                     class="icon" name="person-outline"></ion-icon></a>
+                <router-link to="/cart"><ion-icon class="icon kosar" name="cart-outline"></ion-icon>({{
+                  data.countCartItems }})</router-link>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
                     <router-link class="dropdown-item" to="/bejelentkezes">Bejelentkezés</router-link>

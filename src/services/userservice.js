@@ -1,10 +1,15 @@
 import Axios from './dataservice.js';
 
 export default {
-  registerUser(data) {
-    return Axios.post('/register', data)
+   registerUser(data) {
+    return Axios.post('/register', {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      password_confirmation: data.confirm_password
+    })
       .then(resp => {
-        // console.log(resp);
+        console.log(resp);
         return resp;
       })
       .catch(err => {
@@ -30,5 +35,4 @@ export default {
         return Promise.reject(err.response);
       })
   }
-
 }
