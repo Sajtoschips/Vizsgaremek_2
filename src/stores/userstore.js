@@ -19,7 +19,9 @@ export const useUserStore = defineStore('userstore',{
             return userservice.login(data)
                 .then(resp =>{
                     this.status.loggedIn = true;
-                    this.user = resp.data.data;
+                    this.user.name = resp.data.user;
+                    this.user.token = resp.data.token;
+                    
                     this.status.message = ''; //resp.data.message;
                     sessionStorage.setItem('user',JSON.stringify(this.user))
                 })

@@ -83,6 +83,7 @@ const menuItems = computed(() => {
 });
 
 function onLogout() {
+  console.log(status.value)
   logout().then(() => {
     router.push("/");
   });
