@@ -25,8 +25,6 @@
               <div class="dropdown">
                 <a id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><ion-icon
                     class="icon" name="person-outline"></ion-icon></a>
-                <router-link to="/cart"><ion-icon class="icon kosar" name="cart-outline"></ion-icon>({{
-                  data.countCartItems }})</router-link>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
                     <router-link class="dropdown-item" to="/bejelentkezes">Bejelentkezés</router-link>
@@ -35,17 +33,17 @@
                     <router-link class="dropdown-item" to="/regisztracio">Regisztráció</router-link>
                   </li>
                 </ul>
+                <router-link class="router-link" to="/cart"><ion-icon class="icon" name="cart-outline"></ion-icon>({{
+                  data.countCartItems }})</router-link>
               </div>
             </li>
-
-
+            
+            
             <div v-if="status.loggedIn">
               <li class="nav-item" v-if="status.loggedIn">
                 <a class="nav-link" href="#" @click="onLogout">Kijelentkezés</a>
               </li>
             </div>
-            <router-link class="router-link" to="/cart"><ion-icon class="icon" name="cart-outline"></ion-icon>({{
-              data.countCartItems }})</router-link>
           </ul>
         </div>
       </div>
@@ -102,7 +100,7 @@ function onLogout() {
 // .kosar {
 //   color: black;
 // }
-.router-link{
+.router-link {
   color: black;
 }
 </style>

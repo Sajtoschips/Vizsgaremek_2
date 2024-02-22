@@ -20,10 +20,20 @@ if (sessionStorage.getItem("user") != null) {
 </script>
 
 <template>
-  <AppHeader />
-  <AppNav/>
-  <RouterView />
-  <AppFooter />
+  <div class="d-flex flex-column min-vh-100">
+    <AppHeader />
+    <AppNav />
+
+    <main class="flex-grow-1">
+      <RouterView />
+    </main>
+
+    <AppFooter/>
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.min-vh-100 {
+  min-height: 100vh;
+}
+</style>
