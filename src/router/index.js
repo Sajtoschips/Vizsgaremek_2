@@ -2,8 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import RegistrationView from '../views/user/RegistrationView.vue'
 import LoginView from '../views/user/LoginView.vue'
-import BlogsView from '../views/blog/BlogsView.vue'
-import NewBlogView from   '../views/blog/NewBlogView.vue'
+import ProductsView from '../views/productsViews/ProductsView.vue'
 import CartView from '../views/CartView.vue'
 import { useUserStore } from '../stores/userstore'
 import { storeToRefs } from 'pinia'
@@ -14,8 +13,7 @@ const router = createRouter({
     { path: '/', component: HomeView},
     { path: '/regisztracio', component: RegistrationView},
     { path: '/bejelentkezes', component: LoginView},
-    { path: '/termekek', component: BlogsView},
-    { path: '/ujblog', component: NewBlogView},
+    { path: '/termekek', component: ProductsView},
     { path: '/cart', component: CartView},
   ]
 })
