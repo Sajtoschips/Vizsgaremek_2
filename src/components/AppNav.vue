@@ -106,7 +106,7 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 
 const scrollPosition = ref(null);
 const mobile = ref(true);
-const mobileNav = ref(true);
+const mobileNav = ref(false);
 const windowWidth = ref(null);
 
 const closeMobileNav = () => {
@@ -255,7 +255,7 @@ header {
 
     .mobile-nav-enter-active,
     .mobile-nav-leave-active {
-      transition: 1s all ease;
+      transition: .5s all ease;
     }
 
     .mobile-nav-enter-from,
