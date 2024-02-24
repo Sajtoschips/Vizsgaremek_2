@@ -21,13 +21,11 @@ if (sessionStorage.getItem("user") != null) {
 
 <template>
   <div class="d-flex flex-column min-vh-100">
-    <AppHeader />
-    <AppNav />
-
+    <AppNav/>
+    <AppHeader/>
     <main class="flex-grow-1">
       <RouterView />
     </main>
-
     <AppFooter/>
   </div>
 </template>

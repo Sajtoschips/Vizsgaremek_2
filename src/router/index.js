@@ -10,17 +10,17 @@ import { storeToRefs } from 'pinia'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    { path: '/', component: HomeView},
-    { path: '/regisztracio', component: RegistrationView},
-    { path: '/bejelentkezes', component: LoginView},
-    { path: '/termekek', component: ProductsView},
-    { path: '/cart', component: CartView},
+    { path: '/', name: "Home", component: HomeView},
+    { path: '/regisztracio', name:"Registration" ,component: RegistrationView},
+    { path: '/bejelentkezes', name: "Login",component: LoginView},
+    { path: '/termekek', name: "Termekek", component: ProductsView},
+    { path: '/kosar', name: "Kosar", component: CartView},
   ]
 })
 
 router.beforeEach((to,from,next) =>{
   const {status} = storeToRefs(useUserStore());
-  const publicPages = ['/','/bejelentkezes','/regisztracio','/termekek','/cart'];
+  const publicPages = ['/','/bejelentkezes','/regisztracio','/termekek','/kosar'];
   const autRequired = !publicPages.includes(to.path);
   if (autRequired && !status.value.loggedIn){
     return next('/bejelentkezes')
