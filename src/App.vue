@@ -1,6 +1,8 @@
 <script setup>
 import AppHeader from "./components/AppHeader.vue";
+
 import AppNav from "./components/AppNav.vue";
+
 import AppFooter from "./components/AppFooter.vue";
 
 import { useUserStore } from "./stores/userstore";

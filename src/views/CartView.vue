@@ -4,7 +4,7 @@
         <div class="card" v-if="data.cartItems.length === 0">
           <div class="card-body text-center">
             <h1>A kosár tartalma üres!</h1>
-            <p>Kattints a <a href="/">Kezdőlapra</a> és válogass a termékek között!</p>
+            <p>Kattints a <router-link to="/">Kezdőlapra</router-link> és válogass a termékek között!</p>
           </div>
         </div>
         <div class="card" v-else>
@@ -13,10 +13,10 @@
                 <thead>
                   <tr>
                     <th>Image</th>
-                    <th>Name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Subtotal</th>
+                    <th>Termék</th>
+                    <th>Mennyiség</th>
+                    <th>Ár</th>
+                    <th>Összesen</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -42,7 +42,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <th colSpan="3" class="text-center">Total</th>
+                    <th colSpan="3" class="text-center">Fizetendő</th>
                     <td colSpan="3" class="text-center">
                       <span class="badge bg-danger rounded-pill">
                         {{

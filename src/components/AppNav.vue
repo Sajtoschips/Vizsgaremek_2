@@ -15,20 +15,24 @@
             >Termékek</router-link
           >
         </li>
-        <li>
+        <li v-if="!status.loggedIn">
           <router-link class="link" :to="{ name: 'Registration' }"
             >Regisztráció</router-link
           >
         </li>
-        <li>
+        <li v-if="!status.loggedIn">
           <router-link class="link" :to="{ name: 'Login' }"
             >Bejelentkezés</router-link
           >
         </li>
+        <li v-if="status.loggedIn">
+          <a class="link" href="#" @click="onLogout">Kijelentkezés</a>
+        </li>
         <li>
           <router-link class="link" :to="{ name: 'Kosar' }"
-            ><ion-icon class="kosaricon" name="cart-outline"></ion-icon
-            >()</router-link
+            ><ion-icon class="kosaricon" name="cart-outline"></ion-icon>({{
+              data.countCartItems
+            }})</router-link
           >
         </li>
       </ul>
@@ -58,29 +62,35 @@
               >Termékek</router-link
             >
           </li>
-          <li>
-            <router-link
-              class="link"
-              :to="{ name: 'Registration' }"
-              @click="closeMobileNav"
-              >Regisztráció</router-link
-            >
-          </li>
-          <li>
-            <router-link
-              class="link"
-              :to="{ name: 'Login' }"
-              @click="closeMobileNav"
-              >Bejelentkezés</router-link
-            >
+          <div v-if="!status.loggedIn">
+            <li>
+              <router-link
+                class="link"
+                :to="{ name: 'Registration' }"
+                @click="closeMobileNav"
+                >Regisztráció</router-link
+              >
+            </li>
+            <li>
+              <router-link
+                class="link"
+                :to="{ name: 'Login' }"
+                @click="closeMobileNav"
+                >Bejelentkezés</router-link
+              >
+            </li>
+          </div>
+          <li v-if="status.loggedIn">
+            <a class="link" href="#" @click="onLogout">Kijelentkezés</a>
           </li>
           <li>
             <router-link
               class="link"
               :to="{ name: 'Kosar' }"
               @click="closeMobileNav"
-              ><ion-icon class="kosaricon" name="cart-outline"></ion-icon
-              >()</router-link
+              ><ion-icon class="kosaricon" name="cart-outline"></ion-icon>({{
+                data.countCartItems
+              }})</router-link
             >
           </li>
         </ul>
@@ -92,15 +102,15 @@
 <script setup>
 import { computed } from "vue";
 import { useUserStore } from "../stores/userstore";
-// import { storeToRefs } from "pinia";
+import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
-// const { status, user } = storeToRefs(useUserStore());
-// const { logout } = useUserStore();
+const { status, user } = storeToRefs(useUserStore());
+const { logout } = useUserStore();
 const router = useRouter();
 
 import { useShoppingStore } from "../stores/shoppingStore";
-// get store
-// const data = useShoppingStore();
+
+const data = useShoppingStore();
 
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
@@ -128,9 +138,9 @@ onBeforeUnmount(() => {
 
 const checkScreen = () => {
   windowWidth.value = window.innerWidth;
-  if (windowWidth.value <= 820) {
+  if (windowWidth.value <= 845) {
     mobile.value = true;
-    mobileNav.value = false; // Ez hozzáadva
+    mobileNav.value = false;
   } else {
     mobile.value = false;
     mobileNav.value = false;
@@ -141,12 +151,13 @@ const checkScreen = () => {
 //   // Optional: Hook for logic before component updates
 // });
 
-// function onLogout() {
-//   console.log(status.value);
-//   logout().then(() => {
-//     router.push("/");
-//   });
-// }
+function onLogout() {
+  console.log(status.value);
+  logout().then(() => {
+    closeMobileNav();
+    router.push("/");
+  });
+}
 </script>
 
 <style lang="scss" scoped>
@@ -255,15 +266,15 @@ header {
 
     .mobile-nav-enter-active,
     .mobile-nav-leave-active {
-      transition: .5s all ease;
+      transition: 0.5s all ease;
     }
 
     .mobile-nav-enter-from,
-    .mobile-nav-leave-to{
+    .mobile-nav-leave-to {
       transform: translate(-250px);
     }
 
-    .mobile-nav-enter-to{
+    .mobile-nav-enter-to {
       transform: translate(0);
     }
   }
