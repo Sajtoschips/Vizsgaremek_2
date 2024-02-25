@@ -10,7 +10,7 @@ export const useShoppingStore = defineStore("cart", {
   state: () => {
     return {
       products: [],
-      cartItems: [],
+      cartItems: loadFromStorage("cartItems") || [],
     };
   },
   getters: {
@@ -38,17 +38,17 @@ export const useShoppingStore = defineStore("cart", {
       );
       if (index !== -1) {
         this.cartItems[index].quantity += 1;
-        toast.success("A termék frissítve a kosárhoz!", {
-          timeout: 1000
+        toast.success("A termék frissítve a kosárban!", {
+          timeout: 1000,
         });
       } else {
         item.quantity = 1;
         this.cartItems.push(item);
         toast.success("A termék hozzáadva a kosárhoz!", {
-          timeout: 1000
+          timeout: 1000,
         });
-        
       }
+      saveToStorage("cartItems", this.cartItems);
     },
     incrementQ(item) {
       let index = this.cartItems.findIndex(
@@ -76,8 +76,16 @@ export const useShoppingStore = defineStore("cart", {
         (product) => product.ProductNumber !== item.ProductNumber
       );
       toast.error("A termék törölve a kosárból!", {
-        timeout: 3000
+        timeout: 3000,
       });
+      saveToStorage("cartItems", this.cartItems);
     },
   },
 });
+function loadFromStorage(key) {
+  return JSON.parse(localStorage.getItem(key));
+}
+
+function saveToStorage(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
+}

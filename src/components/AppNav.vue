@@ -167,6 +167,7 @@ function onLogout() {
 header {
   background-color: rgba(0, 0, 0, 0.8);
   width: 100%;
+  position: fixed;
   transition: 0.5s ease all;
   color: #fff;
   z-index: 99;
