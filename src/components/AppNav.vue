@@ -2,7 +2,8 @@
   <header :class="{ 'scrolled-nav': scrollPosition }">
     <nav>
       <div class="branding">
-        <img src="../assets/img/logo.png" alt="" />
+        <a href="/"><img src="../assets/img/logo.png" alt="" /></a>
+        
       </div>
       <ul v-show="!mobile" class="navigation">
         <li>
@@ -167,7 +168,7 @@ function onLogout() {
 header {
   background-color: rgba(0, 0, 0, 0.8);
   width: 100%;
-  position: fixed;
+  // position: fixed;
   transition: 0.5s ease all;
   color: #fff;
   z-index: 99;

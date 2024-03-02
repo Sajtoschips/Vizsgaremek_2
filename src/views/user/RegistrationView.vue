@@ -103,6 +103,7 @@ function onRegiter(){
       errorMessages.value = err.data.data;
     })
 }
+
 </script>
 
 <style lang="scss" scoped></style>
