@@ -1,5 +1,5 @@
 <script setup>
-import AppHeader from "./components/AppHeader.vue";
+// import AppHeader from "./components/AppHeader.vue";
 
 import AppNav from "./components/AppNav.vue";
 
@@ -24,7 +24,7 @@ if (sessionStorage.getItem("user") != null) {
 <template>
   <div class="d-flex flex-column min-vh-100">
     <AppNav/>
-    <AppHeader/>
+    <!-- <AppHeader/> -->
     <main class="flex-grow-1">
       <RouterView />
     </main>

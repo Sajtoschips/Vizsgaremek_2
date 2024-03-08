@@ -2,97 +2,58 @@
   <header :class="{ 'scrolled-nav': scrollPosition }">
     <nav>
       <div class="branding">
-        <a href="/"><img src="../assets/img/logo.png" alt="" /></a>
-        
+        <a href="/"><img src="../assets/img/gametrix.png" alt="" /></a>
+
       </div>
       <ul v-show="!mobile" class="navigation">
         <li>
-          <router-link class="link" :to="{ name: 'Home' }"
-            >Nyitó oldal</router-link
-          >
+          <router-link class="link" :to="{ name: 'Home' }">Nyitó oldal</router-link>
         </li>
         <li>
-          <router-link class="link" :to="{ name: 'Termekek' }"
-            >Termékek</router-link
-          >
+          <router-link class="link" :to="{ name: 'Termekek' }">Termékek</router-link>
         </li>
         <li v-if="!status.loggedIn">
-          <router-link class="link" :to="{ name: 'Registration' }"
-            >Regisztráció</router-link
-          >
+          <router-link class="link" :to="{ name: 'Registration' }">Regisztráció</router-link>
         </li>
         <li v-if="!status.loggedIn">
-          <router-link class="link" :to="{ name: 'Login' }"
-            >Bejelentkezés</router-link
-          >
+          <router-link class="link" :to="{ name: 'Login' }">Bejelentkezés</router-link>
         </li>
         <li v-if="status.loggedIn">
           <a class="link" href="#" @click="onLogout">Kijelentkezés</a>
         </li>
         <li>
-          <router-link class="link" :to="{ name: 'Kosar' }"
-            ><ion-icon class="kosaricon" name="cart-outline"></ion-icon>({{
-              data.countCartItems
-            }})</router-link
-          >
+          <router-link class="link" :to="{ name: 'Kosar' }"><ion-icon class="kosaricon" name="cart-outline"></ion-icon>({{
+            data.countCartItems
+          }})</router-link>
         </li>
       </ul>
       <div class="icon">
-        <i
-          @click="toggleMobileNav"
-          v-show="mobile"
-          class="far fa-bars"
-          :class="{ 'icon-active': mobileNav }"
-        ></i>
+        <i @click="toggleMobileNav" v-show="mobile" class="far fa-bars" :class="{ 'icon-active': mobileNav }"></i>
       </div>
       <transition name="mobile-nav">
         <ul v-show="mobileNav" class="dropdown-nav">
           <li>
-            <router-link
-              class="link"
-              :to="{ name: 'Home' }"
-              @click="closeMobileNav"
-              >Nyitó oldal</router-link
-            >
+            <router-link class="link" :to="{ name: 'Home' }" @click="closeMobileNav">Nyitó oldal</router-link>
           </li>
           <li>
-            <router-link
-              class="link"
-              :to="{ name: 'Termekek' }"
-              @click="closeMobileNav"
-              >Termékek</router-link
-            >
+            <router-link class="link" :to="{ name: 'Termekek' }" @click="closeMobileNav">Termékek</router-link>
           </li>
           <div v-if="!status.loggedIn">
             <li>
-              <router-link
-                class="link"
-                :to="{ name: 'Registration' }"
-                @click="closeMobileNav"
-                >Regisztráció</router-link
-              >
+              <router-link class="link" :to="{ name: 'Registration' }" @click="closeMobileNav">Regisztráció</router-link>
             </li>
             <li>
-              <router-link
-                class="link"
-                :to="{ name: 'Login' }"
-                @click="closeMobileNav"
-                >Bejelentkezés</router-link
-              >
+              <router-link class="link" :to="{ name: 'Login' }" @click="closeMobileNav">Bejelentkezés</router-link>
             </li>
           </div>
           <li v-if="status.loggedIn">
             <a class="link" href="#" @click="onLogout">Kijelentkezés</a>
           </li>
           <li>
-            <router-link
-              class="link"
-              :to="{ name: 'Kosar' }"
-              @click="closeMobileNav"
-              ><ion-icon class="kosaricon" name="cart-outline"></ion-icon>({{
-                data.countCartItems
-              }})</router-link
-            >
+            <router-link class="link" :to="{ name: 'Kosar' }" @click="closeMobileNav"><ion-icon class="kosaricon"
+                name="cart-outline"></ion-icon>({{
+                  data.countCartItems
+                }})</router-link>
           </li>
         </ul>
       </transition>
@@ -165,6 +126,7 @@ function onLogout() {
 .kosaricon {
   font-size: 17px;
 }
+
 header {
   background-color: rgba(0, 0, 0, 0.8);
   width: 100%;
@@ -177,10 +139,11 @@ header {
     position: relative;
     display: flex;
     flex-direction: row;
-    padding: 12px 0;
+    padding: 0px 0;
     transition: 0.5s ease all;
     width: 90%;
     margin: 0 auto;
+
     @media (min-width: 1140px) {
       max-width: 1140px;
     }
@@ -216,7 +179,7 @@ header {
       align-items: center;
 
       img {
-        width: 50px;
+        width: 75px;
         transition: 0.5s ease all;
       }
     }
@@ -260,6 +223,7 @@ header {
 
       li {
         margin-left: 0;
+
         .link {
           color: black;
         }
