@@ -1,17 +1,12 @@
 <template>
-  <div
-    class="container-fluid align-items-center cart-content"
-    style="width: 100%"
-  >
-    <div class="col-md-12-col-lg-12-col-sm-6">
-      <div class="card" v-if="data.cartItems.length === 0">
-        <div class="card-body text-center">
-          <h1>A kosár tartalma üres!</h1>
-          <p>
-            Kattints a <router-link to="/">Kezdőlapra</router-link> és válogass
-            a termékek között!
-          </p>
-        </div>
+  <body>
+    <div class="cart-content" style="width: 100%">
+      <div class="wrapper" v-if="data.cartItems.length === 0">
+        <h1>A kosár tartalma üres!</h1>
+        <p class="text-center">
+          Kattints a <router-link to="/termekek">termékek</router-link> fülre és
+          válogass kedvedre!
+        </p>
       </div>
       <div class="wrapper" v-else>
         <h1>Kosár tartalma</h1>
@@ -58,7 +53,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </body>
 </template>
 
 <script setup>
@@ -96,10 +91,7 @@ i {
   padding: 0;
   box-sizing: border-box;
 }
-body {
-  background: #ffe3e2;
-  font-family: montserrat;
-}
+
 .wrapper {
   max-width: 1000px;
   margin: 0 auto;
@@ -132,7 +124,7 @@ body {
 .box img {
   width: 200px;
   height: 200px;
-  object-fit: cover;
+  margin: 5px;
 }
 .content {
   padding: 20px;
