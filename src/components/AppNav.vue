@@ -3,57 +3,98 @@
     <nav>
       <div class="branding">
         <a href="/"><img src="../assets/img/gametrix.png" alt="" /></a>
-
       </div>
       <ul v-show="!mobile" class="navigation">
         <li>
-          <router-link class="link" :to="{ name: 'Home' }">Nyitó oldal</router-link>
+          <router-link class="link" :to="{ name: 'Home' }"
+            >Nyitó oldal</router-link
+          >
         </li>
         <li>
-          <router-link class="link" :to="{ name: 'Termekek' }">Termékek</router-link>
+          <router-link class="link" :to="{ name: 'Termekek' }"
+            >Termékek</router-link
+          >
         </li>
         <li v-if="!status.loggedIn">
-          <router-link class="link" :to="{ name: 'Registration' }">Regisztráció</router-link>
+          <router-link class="link" :to="{ name: 'Registration' }"
+            >Regisztráció</router-link
+          >
         </li>
         <li v-if="!status.loggedIn">
-          <router-link class="link" :to="{ name: 'Login' }">Bejelentkezés</router-link>
+          <router-link class="link" :to="{ name: 'Login' }"
+            >Bejelentkezés</router-link
+          >
         </li>
         <li v-if="status.loggedIn">
           <a class="link" href="#" @click="onLogout">Kijelentkezés</a>
         </li>
         <li>
-          <router-link class="link" :to="{ name: 'Kosar' }"><ion-icon class="kosaricon" name="cart-outline"></ion-icon>({{
-            data.countCartItems
-          }})</router-link>
+          <router-link class="link" :to="{ name: 'Kosar' }"
+            ><ion-icon class="kosaricon" name="cart-outline"></ion-icon>({{
+              data.countCartItems
+            }})</router-link
+          >
         </li>
       </ul>
       <div class="icon">
-        <i @click="toggleMobileNav" v-show="mobile" class="far fa-bars" :class="{ 'icon-active': mobileNav }"></i>
+        <i
+          @click="toggleMobileNav"
+          v-show="mobile"
+          class="far fa-bars"
+          :class="{ 'icon-active': mobileNav }"
+        ></i>
       </div>
       <transition name="mobile-nav">
         <ul v-show="mobileNav" class="dropdown-nav">
-          <li>
-            <router-link class="link" :to="{ name: 'Home' }" @click="closeMobileNav">Nyitó oldal</router-link>
+          <li class="branding">
+            <a href="/"><img src="../assets/img/gametrix.png" alt="" /></a>
           </li>
           <li>
-            <router-link class="link" :to="{ name: 'Termekek' }" @click="closeMobileNav">Termékek</router-link>
+            <router-link
+              class="link"
+              :to="{ name: 'Home' }"
+              @click="closeMobileNav"
+              >Nyitó oldal</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              class="link"
+              :to="{ name: 'Termekek' }"
+              @click="closeMobileNav"
+              >Termékek</router-link
+            >
           </li>
           <div v-if="!status.loggedIn">
             <li>
-              <router-link class="link" :to="{ name: 'Registration' }" @click="closeMobileNav">Regisztráció</router-link>
+              <router-link
+                class="link"
+                :to="{ name: 'Registration' }"
+                @click="closeMobileNav"
+                >Regisztráció</router-link
+              >
             </li>
             <li>
-              <router-link class="link" :to="{ name: 'Login' }" @click="closeMobileNav">Bejelentkezés</router-link>
+              <router-link
+                class="link"
+                :to="{ name: 'Login' }"
+                @click="closeMobileNav"
+                >Bejelentkezés</router-link
+              >
             </li>
           </div>
           <li v-if="status.loggedIn">
             <a class="link" href="#" @click="onLogout">Kijelentkezés</a>
           </li>
           <li>
-            <router-link class="link" :to="{ name: 'Kosar' }" @click="closeMobileNav"><ion-icon class="kosaricon"
-                name="cart-outline"></ion-icon>({{
-                  data.countCartItems
-                }})</router-link>
+            <router-link
+              class="link"
+              :to="{ name: 'Kosar' }"
+              @click="closeMobileNav"
+              ><ion-icon class="kosaricon" name="cart-outline"></ion-icon>({{
+                data.countCartItems
+              }})</router-link
+            >
           </li>
         </ul>
       </transition>
@@ -100,7 +141,7 @@ onBeforeUnmount(() => {
 
 const checkScreen = () => {
   windowWidth.value = window.innerWidth;
-  if (windowWidth.value <= 845) {
+  if (windowWidth.value <= 874) {
     mobile.value = true;
     mobileNav.value = false;
   } else {
@@ -108,10 +149,6 @@ const checkScreen = () => {
     mobileNav.value = false;
   }
 };
-
-// onBeforeUpdate(() => {
-//   // Optional: Hook for logic before component updates
-// });
 
 function onLogout() {
   console.log(status.value);
@@ -130,7 +167,7 @@ function onLogout() {
 header {
   background-color: rgba(0, 0, 0, 0.8);
   width: 100%;
-  // position: fixed;
+  position: fixed;
   transition: 0.5s ease all;
   color: #fff;
   z-index: 99;
@@ -217,7 +254,8 @@ header {
       width: 100%;
       max-width: 250px;
       height: 100%;
-      background-color: #fff;
+      backdrop-filter: blur(10px);
+      background-color: #ffffff59;
       top: 0;
       left: 0;
 

@@ -25,7 +25,7 @@ if (sessionStorage.getItem("user") != null) {
   <div class="d-flex flex-column min-vh-100">
     <AppNav/>
     <!-- <AppHeader/> -->
-    <main class="flex-grow-1">
+    <main class="flex-grow-1 content">
       <RouterView />
     </main>
     <AppFooter/>
@@ -36,9 +36,7 @@ if (sessionStorage.getItem("user") != null) {
 .min-vh-100 {
   min-height: 100vh;
 }
-.app{
-  min-height: 100vh;
-  position: relative;
-  background-color: aquamarine;
+.content{
+  padding-top: 0px;
 }
 </style>

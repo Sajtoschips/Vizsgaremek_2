@@ -81,31 +81,36 @@
   <body>
     <div class="wrapper">
       <h2>Regisztráció</h2>
-      <form action="#">
+      <form @submit.prevent="onRegister">
         <div class="input-box">
-          <input type="text" placeholder="Enter your name" required>
+          <input type="text" placeholder="Név" 
+              v-model="regForm.name" required>
         </div>
         <div class="input-box">
-          <input type="text" placeholder="Enter your email" required>
+          <input type="email" placeholder="E-mail"
+              v-model="regForm.email" required>
         </div>
         <div class="input-box">
-          <input type="password" placeholder="Create password" required>
+          <input type="password" placeholder="Jelszó"
+              v-model="regForm.password" required>
         </div>
         <div class="input-box">
-          <input type="password" placeholder="Confirm password" required>
+          <input type="password" placeholder="Jelszó újra"
+              v-model="regForm.confirm_password" required>
         </div>
         <div class="policy">
           <input type="checkbox">
-          <h3>I accept all terms & condition</h3>
+          <h3>Elfogadom az általános szerződési feltételeket</h3>
         </div>
         <div class="input-box button">
-          <input type="Submit" value="Register Now">
+          <input type="Submit" value="Regisztráció">
         </div>
         <div class="text">
           <h3>Van már fiókod? <a href="/bejelentkezes">Jelentkezz be!</a></h3>
         </div>
       </form>
     </div>
+    
   </body>
 </template>
 
@@ -124,7 +129,7 @@ const regForm = ref({
 const regSuccess = ref(false);
 const errorMessages = ref({});
 
-function onRegiter() {
+function onRegister() {
   // console.log(regForm.value);
   userservice.registerUser(regForm.value)
     .then(() => {
