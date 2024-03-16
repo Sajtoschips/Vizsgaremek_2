@@ -1,93 +1,80 @@
 <template>
   <body>
-    <div class="wrapper">
+    <div v-if="!logSuccess" class="wrapper">
       <h2>Bejelentkezés</h2>
       <form @submit.prevent="onLogin">
         <div class="input-box">
-          <input type="email" class="form-control" id="email" placeholder="E-mail" v-model="loginForm.email" required>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="E-mail"
+            v-model="loginForm.email"
+            required
+          />
         </div>
         <div class="input-box">
-          <input type="password" class="form-control" id="password" placeholder="Jelszó" v-model="loginForm.password"
-            required>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Jelszó"
+            v-model="loginForm.password"
+            required
+          />
         </div>
         <div class="input-box button">
-          <input type="Submit" value="Bejelentkezés">
+          <input type="Submit" value="Bejelentkezés" />
         </div>
         <div class="text">
-          <h3>Nincs még felhsználód? <a href="/regisztracio">Regisztrálj most!</a></h3>
+          <h3>
+            Nincs még felhasználód?
+            <a href="/regisztracio">Regisztrálj most!</a>
+          </h3>
         </div>
       </form>
     </div>
-  </body>
-  <!-- <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h1 class="display-4 text-center my-5">Bejelentkezés</h1>
-      </div>
-      <div class="col-12 col-md-4 mx-auto">
-        <form @submit.prevent="onLogin">
-          <div class="form-floating mb-3">
-            <input 
-              type="email" 
-              class="form-control" 
-              id="email" 
-              placeholder="E-mail" 
-              v-model="loginForm.email">
-            <label for="name">Email</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input 
-              type="password" 
-              class="form-control" 
-              id="password" 
-              placeholder="Jelszó" 
-              v-model="loginForm.password">
-            <label for="password">Jelszó</label>
-          </div>
-
-          <div class="mb-3">
-            <button type="submit" class="btn btn-primary w-100 py-3 mt-3">Bejelentkezés</button>
-          </div>
-      </form>
-
-      <div class="alert alert-danger" v-if="status.message">
-        {{ status.message }}
-      </div>
-
+    <div v-else class="alert alert-success col-12 col-md-6 mx-auto">
+      <p class="text-center">
+        Sikeres bejelentkezés, átirányítás a főoldalra. 
+        <i class="pi pi-spin pi-spinner"></i>
+      </p>
     </div>
-  </div>
-</div> -->
+  </body>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { storeToRefs } from 'pinia'
-import { useUserStore } from '../../stores/userstore';
-import { useRouter } from 'vue-router'
-
+import { ref } from "vue";
+import { storeToRefs } from "pinia";
+import { useUserStore } from "../../stores/userstore";
+import { useRouter } from "vue-router";
+import "primeicons/primeicons.css";
 const { login } = useUserStore();
 const { status } = storeToRefs(useUserStore());
 
 const router = useRouter();
 
-
 const loginForm = ref({});
+const logSuccess = ref(false);
 
 function onLogin() {
-  login(loginForm.value)
-    .then(() => { router.push('/'); })
-    ;
+  login(loginForm.value).then(() => {
+    logSuccess.value = true;
+    setTimeout(() => {
+      router.push("/");
+    }, 2000);
+  });
 }
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -116,7 +103,7 @@ body {
 }
 
 .wrapper h2::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: 0;
@@ -143,7 +130,7 @@ form .input-box input {
   font-size: 17px;
   font-weight: 400;
   color: #333;
-  border: 1.5px solid #C7BEBE;
+  border: 1.5px solid #c7bebe;
   border-bottom-width: 2.5px;
   border-radius: 6px;
   transition: all 0.3s ease;

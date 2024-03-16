@@ -6,7 +6,8 @@ export default {
       name: data.name,
       email: data.email,
       password: data.password,
-      password_confirmation: data.confirm_password
+      adress: data.adress,
+      phone_number: data.phone_number,
     })
       .then(resp => {
         console.log(resp);
