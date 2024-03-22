@@ -4,63 +4,100 @@
 
 <template>
   <div class="container" style="padding-top: 5rem; padding-bottom: 8rem;">
-    <h1 class="display-6">Nyitó oldal</h1>
+    <div class="row">
 
-
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel ">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-          aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-          aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-          aria-label="Slide 3"></button>
-      </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="../assets/img/gametrix.png" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-          <img src="../assets/img/logo.png" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-          <img src="../assets/img/logo2.jpeg" class="d-block w-100" alt="...">
+      <!-- List Group -->
+      <div class="col-md-3">
+        <div class="list-group" id="list-tab" role="tablist">
+          <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list"
+            href="#list-home" role="tab" aria-controls="list-home">Home</a>
+          <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list"
+            href="#list-profile" role="tab" aria-controls="list-profile">Profile</a>
+          <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list"
+            href="#list-messages" role="tab" aria-controls="list-messages">Messages</a>
+          <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list"
+            href="#list-settings" role="tab" aria-controls="list-settings">Settings</a>
         </div>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-        data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-        data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+
+      <!-- Carousel -->
+      <div class="col-md-9">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+              aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+              aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+              aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+              aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+              aria-label="Slide 5"></button>
+          </div>
+          <div class="carousel-inner"> <!-- Adjust carousel height here -->
+            <div class="carousel-item active">
+              <img src="../assets/img/1.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="../assets/img/1.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="../assets/img/1.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="../assets/img/1.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="../assets/img/1.png" class="d-block w-100" alt="...">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+
     </div>
 
-
-
+    <!-- Tab Content -->
+    <div class="row">
+      <div class="col-12">
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">...
+          </div>
+          <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>
+          <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
+          <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
+        </div>
+      </div>
+    </div>
 
   </div>
 </template>
 
-
 <style scoped>
-.carousel-inner{
-    height: 30rem;
+.carousel-inner {
+  height: auto;
+  width: auto;
+  /* Adjust carousel height here */
 }
 
-.item{
-    height: 200px ;
-    width:  200px ;
-    border: 1px solid black;
+.item {
+  height: 200px;
+  width: 200px;
+  border: 1px solid black;
 }
 
-
-.img{
-    height: auto ;
-    width:  auto ;
-
+.img {
+  height: auto;
+  width: auto;
 }
 </style>
