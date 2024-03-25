@@ -36,17 +36,16 @@
           </div>
           <div class="right-bar">
             <p>
-              <span>Termék(ek) ára</span> <span>{{ teljesAr }}</span>
+              <span>Termék(ek) ára: </span> <span>{{ teljesAr }} Ft</span>
             </p>
             <hr />
             <p>
               <span v-if="szallitas == 0">Ingyenes szállítás</span>
-              <span v-else>Szállítás</span>
-              <span>{{ szallitas }} Ft</span>
+              <span v-else>Szállítás {{ szallitas }} Ft</span>
             </p>
             <hr />
             <p>
-              <span>Összesen</span> <span>{{ teljesArSzallitassal }}</span>
+              <span>Összesen</span> <span>{{ teljesArSzallitassal }} Ft</span>
             </p>
             <a href="#"><i class="fa fa-shopping-cart"></i>Rendelés</a>
           </div>
@@ -164,7 +163,7 @@ i {
   flex: 25%;
   margin-left: 20px;
   padding: 20px;
-  height: 400px;
+  height: 255px;
   border-radius: 5px;
   background: #fff;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -176,7 +175,7 @@ i {
   display: flex;
   justify-content: space-between;
   margin-bottom: 30px;
-  font-size: 20px;
+  font-size: 16px;
 }
 .right-bar a {
   background-color: #76bfb6;
