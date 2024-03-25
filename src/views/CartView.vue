@@ -40,9 +40,9 @@
             </p>
             <hr />
             <p>
-              <span v-if="szallitas.value === 0">Ingyenes szállítás</span>
+              <span v-if="szallitas == 0">Ingyenes szállítás</span>
               <span v-else>Szállítás</span>
-              <span>{{ szallitas.value }} Ft</span>
+              <span>{{ szallitas }} Ft</span>
             </p>
             <hr />
             <p>

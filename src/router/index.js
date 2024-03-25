@@ -7,6 +7,7 @@ import CartView from '../views/CartView.vue'
 import { useUserStore } from '../stores/userstore'
 import ProductDetailsView from '../views/productsViews/ProductDetailsView.vue'
 import { storeToRefs } from 'pinia'
+import PageNotFound from "../views/PageNotFound.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,6 +18,7 @@ const router = createRouter({
     { path: '/termekek', name: "Termekek", component: ProductsView},
     { path: '/kosar', name: "Kosar", component: CartView},
     { path: '/termek/:ProductName', name: "Termek", component: ProductDetailsView},
+    { path: '/:pathName(.*)*', name: "PageNotFound", component: PageNotFound},
   ]
 })
 
