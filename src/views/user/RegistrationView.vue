@@ -32,7 +32,7 @@
             type="text"
             placeholder="Lakcím"
             v-model="regForm.adress"
-            required
+            required 
           />
         </div>
         <div class="input-box">
@@ -40,7 +40,7 @@
             type="text"
             placeholder="Telefonszám"
             v-model="regForm.phone_number"
-            required
+            required maxlength="12"
           />
         </div>
         <!-- <div class="input-box">

@@ -65,9 +65,8 @@ export const useShoppingStore = defineStore("cart", {
       if (index !== -1) {
         this.cartItems[index].quantity -= 1;
         if (this.cartItems[index].quantity === 0) {
-          this.cartItems = this.cartItems.filter(
-            (product) => product.ProductNumber !== item.ProductNumber
-          );
+          this.removeFromCart(item);
+          
         }
       }
     },

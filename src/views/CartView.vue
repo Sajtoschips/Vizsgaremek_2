@@ -30,7 +30,11 @@
                   <i aria-hidden="true" class="fa fa-trash"></i>
                   <span class="btn2">Remove</span>
                 </p>
-                <p class="unit">Quantity: <input name="" value="2" /></p>
+                <i @click="data.incrementQ(item)" class="bi bi-caret-up"></i>
+                      <span class="mx-2">
+                        {{ item.quantity }}
+                      </span>
+                      <i @click="data.decrementQ(item)" class="bi bi-caret-down"></i>
               </div>
             </div>
           </div>
@@ -40,8 +44,8 @@
             </p>
             <hr />
             <p>
-              <span v-if="szallitas == 0">Ingyenes szállítás</span>
-              <span v-else>Szállítás {{ szallitas }} Ft</span>
+              <span v-if="szallitas == 0"> Ingyenes szállítás </span>
+              <span v-else>  Szállítás költsége: </span><span> {{ szallitas }} Ft</span>
             </p>
             <hr />
             <p>
