@@ -7,21 +7,10 @@
     <div class="row">
 
       <!-- List Group -->
-      <div class="col-md-3">
-        <div class="list-group" id="list-tab" role="tablist">
-          <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list"
-            href="#list-home" role="tab" aria-controls="list-home">Home</a>
-          <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list"
-            href="#list-profile" role="tab" aria-controls="list-profile">Profile</a>
-          <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list"
-            href="#list-messages" role="tab" aria-controls="list-messages">Messages</a>
-          <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list"
-            href="#list-settings" role="tab" aria-controls="list-settings">Settings</a>
-        </div>
-      </div>
+      
 
       <!-- Carousel -->
-      <div class="col-md-9">
+      <div >
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-interval="2400" data-bs-ride="carousel">
           <div class="carousel-indicators ">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"

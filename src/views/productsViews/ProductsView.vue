@@ -1,26 +1,48 @@
 <template>
-  <div class="container" style="padding-top: 5rem; padding-bottom: 8rem;">
-    <div class="row row-cols-1 row-cols-md-2 g-4">
-      <div
-        class="col"
-        v-for="product in products"
-        :key="product.ProductName"
-        
-        >
-        <div class="card">
-          <img :src="product.Image" claspros="card-img-top" alt="..." @click="goToProductPage(product.ProductName)"/>
-          <div class="card-body">
-            <h5 class="card-title">{{ product.ProductName }}</h5>
-            <p class="card-text">{{ product.RetailPrice }} Ft</p>
-            <button class="btn btn-primary" @click="addToCart(product)">
-              Kosárba
-            </button>
+
+  <div class="container-fluid" style="padding-top: 5rem; padding-bottom: 8rem;">
+    <div class="row">
+      <!-- Side Navigation -->
+      <div class="col-md-3" >
+        <div class="list-group" id="list-tab" role="tablist">
+          <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list"
+            href="#list-home" role="tab" aria-controls="list-home">Processzor</a>
+            
+          <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list"
+            href="#list-profile" role="tab" aria-controls="list-profile">Videókártya</a>
+          <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list"
+            href="#list-messages" role="tab" aria-controls="list-messages">Alaplap</a>
+          <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list"
+            href="#list-settings" role="tab" aria-controls="list-settings">Memória</a>
+          <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list"
+            href="#list-settings" role="tab" aria-controls="list-settings">Tápegység</a>
+          <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list"
+            href="#list-settings" role="tab" aria-controls="list-settings">Háttértároló</a>
+          <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list"
+            href="#list-settings" role="tab" aria-controls="list-settings">Gépház</a>
+        </div>
+      </div>
+
+      <!-- Products -->
+      <div class="row row-cols-1 row-cols-md-3 g-4 col-md-9">
+        <div class="col" v-for="product in products" :key="product.ProductName">
+          <div class="card h-100 border-0 shadow-sm">
+            <img :src="product.Image" class="card-img-top" alt="Product Image"
+              @click="goToProductPage(product.ProductName)" style="max-width: 100%; height: auto;" />
+            <div class="card-body">
+              <h5 class="card-title mb-3">{{ product.ProductName }}</h5>
+              <p class="card-text mb-3 font-weight-bold">{{ product.RetailPrice }} Ft</p>
+              <button class="btn btn-primary btn-sm" @click="addToCart(product)">
+                Kosárba
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
+
+  </div>
   <!-- <DataView :value="products">
     <template #list="slotProps">
         <div class="grid grid-nogutter">
@@ -97,10 +119,28 @@ const addToCart = (product) => {
 // const products = ref();
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 img {
-  width: 200px;
-  height: 150px;
+  width: 100%;
+  height: auto;
   cursor: pointer;
 }
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.list-group{
+  margin: 10px;
+  border: 1px black solid;
+  
+  /* margin-top: 10px;
+  margin-bottom: 20px; */
+}
+
 </style>
