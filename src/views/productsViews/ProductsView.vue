@@ -121,7 +121,9 @@ const addToCart = (product) => {
 
 <style scoped>
 img {
-  width: 100%;
+  /* width: 100%;
+  height: auto; */
+  width: 50%;
   height: auto;
   cursor: pointer;
 }

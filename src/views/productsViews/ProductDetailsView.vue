@@ -28,3 +28,7 @@ const SelectedProduct = computed(() => {
   );
 });
 </script>
+
+<style scoped>
+
+</style>
