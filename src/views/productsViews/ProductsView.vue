@@ -25,7 +25,7 @@
       </div>
 
       <!-- Products -->
-      <div class="row row-cols-3 col-md-9">
+      <div class="row row-cols-lg-3 row-cols-sm-1 col-md-9">
         <div v-if="selectedCategory">
           <div class="col" v-for="product in filteredProducts">
             <div class="card h-100 border-3 shadow-sm mt-2">
@@ -53,7 +53,7 @@
         </div>
         <div v-else>
           <div v-for="product in products" :key="product.ProductName">
-            <div class="card h-100 border-3 shadow-sm">
+            <div class="card h-100 border-3 shadow-sm mt-2">
               <img
                 :src="product.Image"
                 class="card-img-top"
