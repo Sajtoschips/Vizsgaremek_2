@@ -104,7 +104,7 @@ function onRegister() {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
 
 * {
@@ -115,7 +115,7 @@ function onRegister() {
 }
 
 body {
-  min-height: 100vh;
+  min-height: 120vh;
   display: flex;
   align-items: center;
   justify-content: center;

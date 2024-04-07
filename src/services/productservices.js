@@ -16,6 +16,7 @@ export default {
           return resp.data;
         })
         .catch((err) => {
+          console.error("Hiba a termékek lekérése során:", err);
           return Promise.reject(err.response);
         });
     },

@@ -32,6 +32,16 @@ export const useShoppingStore = defineStore("cart", {
         });
     },
 
+    fetchCategories() {
+      Axios.get("/categories")
+        .then((resp) => {
+          this.products = resp.data;
+        })
+        .catch((err) => {
+          console.error("Hiba a termékek lekérése során:", err);
+        });
+    },
+
     addToCart(item) {
       let index = this.cartItems.findIndex(
         (product) => product.ProductNumber === item.ProductNumber
@@ -57,6 +67,7 @@ export const useShoppingStore = defineStore("cart", {
       if (index !== -1) {
         this.cartItems[index].quantity += 1;
       }
+      saveToStorage("cartItems", this.cartItems);
     },
     decrementQ(item) {
       let index = this.cartItems.findIndex(
@@ -68,6 +79,7 @@ export const useShoppingStore = defineStore("cart", {
           this.removeFromCart(item);
           
         }
+        saveToStorage("cartItems", this.cartItems);
       }
     },
     removeFromCart(item) {

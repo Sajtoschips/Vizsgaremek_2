@@ -28,7 +28,7 @@
                 <h4>{{ item.RetailPrice }} Ft</h4>
                 <p @click="data.removeFromCart(item)" class="btn-area">
                   <i aria-hidden="true" class="fa fa-trash"></i>
-                  <span class="btn2">Remove</span>
+                  <span class="btn2">Törlés</span>
                 </p>
                 <i @click="data.incrementQ(item)" class="bi bi-caret-up"></i>
                       <span class="mx-2">
@@ -45,13 +45,13 @@
             <hr />
             <p>
               <span v-if="szallitas == 0"> Ingyenes szállítás </span>
-              <span v-else>  Szállítás költsége: </span><span> {{ szallitas }} Ft</span>
+              <span v-else>  Szállítás költsége:</span> <span>{{ szallitas }} Ft</span>
             </p>
-            <hr />
+            <hr/>
             <p>
               <span>Összesen</span> <span>{{ teljesArSzallitassal }} Ft</span>
             </p>
-            <a href="#"><i class="fa fa-shopping-cart"></i>Rendelés</a>
+            <a href="#"><i class="fa fa-shopping-cart"></i>Folytatás</a>
           </div>
         </div>
       </div>
@@ -164,10 +164,10 @@ i {
   margin-right: 5px;
 }
 .right-bar {
-  flex: 25%;
+  flex: 30%;
   margin-left: 20px;
   padding: 20px;
-  height: 255px;
+  height: 250px;
   border-radius: 5px;
   background: #fff;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;

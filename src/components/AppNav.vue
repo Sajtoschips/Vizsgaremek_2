@@ -26,6 +26,11 @@
           >
         </li>
         <li v-if="status.loggedIn">
+          <router-link class="link" :to="{ name: 'Profil' }">{{
+            user.name
+          }}</router-link>
+        </li>
+        <li v-if="status.loggedIn">
           <a class="link" href="#" @click="onLogout">Kijelentkezés</a>
         </li>
         <li>
@@ -84,6 +89,11 @@
             </li>
           </div>
           <li v-if="status.loggedIn">
+            <router-link @click="closeMobileNav" class="link" :to="{ name: 'Profil' }">{{
+              user.name
+            }}</router-link>
+          </li>
+          <li v-if="status.loggedIn">
             <a class="link" href="#" @click="onLogout">Kijelentkezés</a>
           </li>
           <li>
@@ -104,9 +114,9 @@
 
 <script setup>
 import { computed } from "vue";
-import { useUserStore } from "../stores/userstore";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
+import { useUserStore } from "../stores/userstore";
 const { status, user } = storeToRefs(useUserStore());
 const { logout } = useUserStore();
 const router = useRouter();

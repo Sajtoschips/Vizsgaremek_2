@@ -14,6 +14,7 @@ if (sessionStorage.getItem("user") != null) {
   user.name = u.name;
   user.token = u.token;
   user.id = u.id;
+  user.role = u.role;
   if (user.token) {
     status.loggedIn = true;
   }

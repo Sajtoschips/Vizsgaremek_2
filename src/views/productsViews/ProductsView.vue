@@ -1,48 +1,85 @@
 <template>
-
-  <div class="container-fluid" style="padding-top: 5rem; padding-bottom: 8rem;">
+  <div class="container-fluid" style="padding-top: 5rem; padding-bottom: 8rem">
     <div class="row">
       <!-- Side Navigation -->
-      <div class="col-md-3" >
+      <div class="col-md-3">
         <div class="list-group" id="list-tab" role="tablist">
-          <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list"
-            href="#list-home" role="tab" aria-controls="list-home">Processzor</a>
-            
-          <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list"
-            href="#list-profile" role="tab" aria-controls="list-profile">Videókártya</a>
-          <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list"
-            href="#list-messages" role="tab" aria-controls="list-messages">Alaplap</a>
-          <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list"
-            href="#list-settings" role="tab" aria-controls="list-settings">Memória</a>
-          <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list"
-            href="#list-settings" role="tab" aria-controls="list-settings">Tápegység</a>
-          <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list"
-            href="#list-settings" role="tab" aria-controls="list-settings">Háttértároló</a>
-          <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list"
-            href="#list-settings" role="tab" aria-controls="list-settings">Gépház</a>
+          <a
+            class="list-group-item"
+            :class="{ active: selectedCategory === null }"
+            @click="selectedCategory = null"
+          >
+            Összes termék
+          </a>
+
+          <a
+            v-for="cat in categories"
+            :key="cat.CategoryID"
+            class="list-group-item"
+            :class="{ active: selectedCategory === cat }"
+            @click="selectedCategory = cat"
+          >
+            {{ cat.CategoryName }}
+          </a>
         </div>
       </div>
 
       <!-- Products -->
-      <div class="row row-cols-1 row-cols-md-3 g-4 col-md-9">
-        <div class="col" v-for="product in products" :key="product.ProductName">
-          <div class="card h-100 border-0 shadow-sm">
-            <img :src="product.Image" class="card-img-top" alt="Product Image"
-              @click="goToProductPage(product.ProductName)" style="max-width: 100%; height: auto;" />
-            <div class="card-body">
-              <h5 class="card-title mb-3">{{ product.ProductName }}</h5>
-              <p class="card-text mb-3 font-weight-bold">{{ product.RetailPrice }} Ft</p>
-              <button class="btn btn-primary btn-sm" @click="addToCart(product)">
-                Kosárba
-              </button>
+      <div class="row row-cols-3 col-md-9">
+        <div v-if="selectedCategory">
+          <div class="col" v-for="product in filteredProducts">
+            <div class="card h-100 border-3 shadow-sm mt-2">
+              <img
+                :src="product.Image"
+                class="card-img-top"
+                alt="Product Image"
+                @click="goToProductPage(product.ProductName)"
+                style="max-width: 100%; height: auto"
+              />
+              <div class="card-body">
+                <h5 class="card-title mb-3">{{ product.ProductName }}</h5>
+                <p class="card-text mb-3 font-weight-bold">
+                  {{ product.RetailPrice }} Ft
+                </p>
+                <button
+                  class="btn btn-primary btn-sm"
+                  @click="addToCart(product)"
+                >
+                  Kosárba
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div v-else>
+          <div v-for="product in products" :key="product.ProductName">
+            <div class="card h-100 border-3 shadow-sm">
+              <img
+                :src="product.Image"
+                class="card-img-top"
+                alt="Product Image"
+                @click="goToProductPage(product.ProductName)"
+                style="max-width: 100%; height: auto"
+              />
+              <div class="card-body">
+                <h5 class="card-title mb-3">{{ product.ProductName }}</h5>
+                <p class="card-text mb-3 font-weight-bold">
+                  {{ product.RetailPrice }} Ft
+                </p>
+                <button
+                  class="btn btn-primary btn-sm"
+                  @click="addToCart(product)"
+                >
+                  Kosárba
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-
   </div>
+
   <!-- <DataView :value="products">
     <template #list="slotProps">
         <div class="grid grid-nogutter">
@@ -95,15 +132,38 @@ import DataView from "primevue/dataview";
 import DataViewLayoutOptions from "primevue/dataviewlayoutoptions";
 // optional
 
-// const { user } = storeToRefs(useUserStore());
-const products = computed(() => shoppingStore.products);
 const router = useRouter();
 const shoppingStore = useShoppingStore();
+const selectedCategory = ref(null);
 
 onMounted(() => {
   shoppingStore.fetchProducts();
 });
+const { categories, products } = useProductData();
+const filteredProducts = computed(() => {
+  if (!selectedCategory.value) {
+    return products.value;
+  }
+  return products.value.filter((p) => {
+    return p.CategoryID === selectedCategory.value.CategoryID;
+  });
+});
 
+
+function useProductData() {
+  const categories = ref([]);
+  const products = ref([]);
+
+  productservices.getAllCategories().then((cats) => {
+    categories.value = cats;
+  });
+
+  productservices.getAllProduct().then((prods) => {
+    products.value = prods;
+  });
+
+  return { categories, products };
+}
 const goToProductPage = (ProductName) => {
   router.push({ name: "Termek", params: { ProductName } });
 };
@@ -137,12 +197,14 @@ img {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.list-group{
+.list-group {
   margin: 10px;
   border: 1px black solid;
-  
+
   /* margin-top: 10px;
   margin-bottom: 20px; */
 }
-
+a:hover {
+  cursor: pointer;
+}
 </style>

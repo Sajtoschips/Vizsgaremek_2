@@ -20,7 +20,7 @@ export const useUserStore = defineStore("userstore", {
         .login(data)
         .then((resp) => {
           this.status.loggedIn = true;
-          this.user.name = resp.data.user;
+          this.user = resp.data.user;
           this.user.token = resp.data.token;
 
           this.status.message = ""; //resp.data.message;
@@ -29,7 +29,7 @@ export const useUserStore = defineStore("userstore", {
         .catch((err) => {
           this.status.loggedIn = false;
           this.user = { name: "", token: "" };
-          this.status.message = err.data.data.error;
+          this.status.message = err.data.error;
           return Promise.reject(err.resposne);
         });
     },
