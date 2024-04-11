@@ -31,10 +31,10 @@
                   <span class="btn2">Törlés</span>
                 </p>
                 <i @click="data.incrementQ(item)" class="bi bi-caret-up"></i>
-                      <span class="mx-2">
-                        {{ item.quantity }}
-                      </span>
-                      <i @click="data.decrementQ(item)" class="bi bi-caret-down"></i>
+                <span class="mx-2">
+                  {{ item.quantity }}
+                </span>
+                <i @click="data.decrementQ(item)" class="bi bi-caret-down"></i>
               </div>
             </div>
           </div>
@@ -45,13 +45,16 @@
             <hr />
             <p>
               <span v-if="szallitas == 0"> Ingyenes szállítás </span>
-              <span v-else>  Szállítás költsége:</span> <span>{{ szallitas }} Ft</span>
+              <span v-else> Szállítás költsége:</span>
+              <span>{{ szallitas }} Ft</span>
             </p>
-            <hr/>
+            <hr />
             <p>
               <span>Összesen</span> <span>{{ teljesArSzallitassal }} Ft</span>
             </p>
-            <a href="#"><i class="fa fa-shopping-cart"></i>Folytatás</a>
+            <a @click="placeOrder" href="#"
+              ><i class="fa fa-shopping-cart"></i>Megrendelés</a
+            >
           </div>
         </div>
       </div>
@@ -62,10 +65,14 @@
 <script setup>
 import { useShoppingStore } from "../stores/shoppingStore";
 import { computed } from "vue";
+import { useUserStore } from "../stores/userstore";
+import { useRouter } from "vue-router";
+
 // get store
 const data = useShoppingStore();
 const alapSzallitas = 1500;
 const ingyenesSzallitasHatar = 100000;
+const router = useRouter();
 
 const teljesAr = computed(() => {
   return data.cartItems.reduce(
@@ -81,6 +88,15 @@ const szallitas = computed(() => {
 const teljesArSzallitassal = computed(() => {
   return teljesAr.value + szallitas.value;
 });
+
+const placeOrder = () => {
+  // Ha a felhasználó nincs bejelentkezve, átirányítjuk a bejelentkezési oldalra
+  // Megrendelés leadása
+  data.placeOrder();
+
+  // Irányítás a sikeres megrendelés oldalra
+  // router.push("/profil");
+};
 </script>
 <style scoped>
 i {

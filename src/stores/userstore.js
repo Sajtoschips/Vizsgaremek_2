@@ -12,6 +12,7 @@ export const useUserStore = defineStore("userstore", {
       loggedIn: false,
       message: "",
     },
+    orders: [],
   }),
   getters: {},
   actions: {
@@ -40,5 +41,14 @@ export const useUserStore = defineStore("userstore", {
         sessionStorage.removeItem("user");
       });
     },
+    // fetchOrders() {
+    //   return userservice.getOrders(this.user.token)
+    //     .then((response) => {
+    //       this.orders = response.data.orders; // Feltételezzük, hogy a válasz tartalmazza a rendeléseket
+    //     })
+    //     .catch((error) => {
+    //       console.error('Hiba történt a rendelések lekérése során:', error);
+    //     });
+    //   },
   },
 });

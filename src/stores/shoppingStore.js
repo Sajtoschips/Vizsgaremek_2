@@ -11,6 +11,7 @@ export const useShoppingStore = defineStore("cart", {
     return {
       products: [],
       cartItems: loadFromStorage("cartItems") || [],
+      orders: [],
     };
   },
   getters: {
@@ -40,6 +41,43 @@ export const useShoppingStore = defineStore("cart", {
         .catch((err) => {
           console.error("Hiba a termékek lekérése során:", err);
         });
+    },
+
+    async placeOrder() {
+      try {
+        // A felhasználó adatainak kiolvasása a sessionStorage-ből
+        const user = JSON.parse(sessionStorage.getItem("user"));
+        const userToken = user.token;
+
+        // Elküldjük az autentikációs tokent az Authorization header-ben
+        const config = {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        };
+
+        const orderData = {
+          cartItems: this.cartItems,
+          // Itt adhatsz hozzá további megrendelési adatokat
+        };
+
+        // Elküldjük az adatokat a szerverre az Authorization headerrel
+        const response = await Axios.post("/orders", [ {   "ProductNumber": 201,   "QuantityOrdered": 3,   "QuotedPrice": 261710 } ], {Authorization: `Bearer ${userToken}`} );
+        console.log("Megrendelés elküldve:", response.data);
+
+        // Sikeres megrendelés esetén töröljük a kosár tartalmát a local storage-ból
+        this.cartItems = [];
+        saveToStorage("cartItems", this.cartItems);
+
+        // Sikeres megrendelés esetén üzenetet jelenítünk meg a felhasználónak
+        toast.success("A megrendelés sikeresen elküldve!");
+      } catch (error) {
+        console.error("Hiba történt a megrendelés során:", error);
+        // Hiba esetén üzenetet jelenítünk meg a felhasználónak
+        toast.error(
+          "Hiba történt a megrendelés során. Kérjük, próbáld újra később!"
+        );
+      }
     },
 
     addToCart(item) {
@@ -77,7 +115,6 @@ export const useShoppingStore = defineStore("cart", {
         this.cartItems[index].quantity -= 1;
         if (this.cartItems[index].quantity === 0) {
           this.removeFromCart(item);
-          
         }
         saveToStorage("cartItems", this.cartItems);
       }
@@ -90,6 +127,31 @@ export const useShoppingStore = defineStore("cart", {
         timeout: 3000,
       });
       saveToStorage("cartItems", this.cartItems);
+    },
+    fetchOrders() {
+      try {
+        const user = JSON.parse(sessionStorage.getItem("user"));
+        const userToken = user.token;
+        const config = {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        };
+
+        Axios.get("/orderedDetails", config)
+          .then((resp) => {
+            console.log("API válasz:", resp.data);
+            const ordersArray = Array.from(resp.data);
+            // Az új struktúrájú tömbet mentjük az orders változóba
+            this.orders = ordersArray.map((order) => order[0]);
+            console.log("Rendelések:", this.orders);
+          })
+          .catch((error) => {
+            console.error("Hiba történt a rendelések lekérése során:", error);
+          });
+      } catch (error) {
+        console.error("Hiba történt a rendelések lekérése során:", error);
+      }
     },
   },
 });

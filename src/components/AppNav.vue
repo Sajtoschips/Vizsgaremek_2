@@ -48,6 +48,12 @@
           class="far fa-bars"
           :class="{ 'icon-active': mobileNav }"
         ></i>
+        <ion-icon
+          class="kosaricon"
+          name="cart-outline"
+          v-show="mobile"
+          :class="{ 'icon-active': mobileNav }"
+        ></ion-icon>
       </div>
       <transition name="mobile-nav">
         <ul v-show="mobileNav" class="dropdown-nav">
@@ -89,14 +95,17 @@
             </li>
           </div>
           <li v-if="status.loggedIn">
-            <router-link @click="closeMobileNav" class="link" :to="{ name: 'Profil' }">{{
-              user.name
-            }}</router-link>
+            <router-link
+              @click="closeMobileNav"
+              class="link"
+              :to="{ name: 'Profil' }"
+              >{{ user.name }}</router-link
+            >
           </li>
           <li v-if="status.loggedIn">
             <a class="link" href="#" @click="onLogout">Kijelentkezés</a>
           </li>
-          <li>
+          <!-- <li>
             <router-link
               class="link"
               :to="{ name: 'Kosar' }"
@@ -104,8 +113,8 @@
               ><ion-icon class="kosaricon" name="cart-outline"></ion-icon>({{
                 data.countCartItems
               }})</router-link
-            >
-          </li>
+            > -->
+          <!-- </li> -->
         </ul>
       </transition>
     </nav>
@@ -171,7 +180,7 @@ function onLogout() {
 
 <style lang="scss" scoped>
 .kosaricon {
-  font-size: 17px;
+  font-size: 24px;
 }
 
 header {
