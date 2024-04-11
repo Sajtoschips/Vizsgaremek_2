@@ -71,7 +71,7 @@
     <br>
 
 
-    <h1 style="text-align: center;"> Legkedveltebb Párosok!</h1>
+    <h1 style="text-align: center;"> Legfontosabb Komponensek!</h1>
 
 
     <br>
@@ -83,7 +83,7 @@
         <div class="card mb-3">
           <img src="../assets/img/kicsi.png" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Kezdő Gamereknek</h5>
+            <h5 class="card-title">Intel Processzoraink</h5>
             <p class="card-text">GeForce RTX 4060 + Intel i5-12400F</p>
             <a href="#" class="btn btn-primary">Kosárba</a>
           </div>
@@ -93,7 +93,7 @@
         <div class="card mb-3">
           <img src="../assets/img/közepes.png" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Haladó Gamereknek </h5>
+            <h5 class="card-title">Nvidia Videokártyáink </h5>
             <p class="card-text">GeForce RTX 4070 + Intel i5-12500</p>
             <a href="#" class="btn btn-primary">Kosárba</a>
           </div>

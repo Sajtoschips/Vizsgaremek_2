@@ -2,76 +2,43 @@
   <div class="container-fluid" style="padding-top: 5rem; padding-bottom: 8rem">
     <div class="row">
       <!-- Side Navigation -->
-      <div class="col-md-3">
+      <div class="col-md-3 col-lg-3 col-sm-12">
         <div class="list-group" id="list-tab" role="tablist">
-          <a
-            class="list-group-item"
-            :class="{ active: selectedCategory === null }"
-            @click="selectedCategory = null"
-          >
+          <a class="list-group-item" :class="{ active: selectedCategory === null }" @click="selectedCategory = null">
             Összes termék
           </a>
 
-          <a
-            v-for="cat in categories"
-            :key="cat.CategoryID"
-            class="list-group-item"
-            :class="{ active: selectedCategory === cat }"
-            @click="selectedCategory = cat"
-          >
+          <a v-for="cat in categories" :key="cat.CategoryID" class="list-group-item"
+            :class="{ active: selectedCategory === cat }" @click="selectedCategory = cat">
             {{ cat.CategoryName }}
           </a>
         </div>
       </div>
 
       <!-- Products -->
-      <div class="row row-cols-lg-3 row-cols-sm-1 col-md-9">
+      <div class="row row-cols-12 row-cols-md-12 ">
         <div v-if="selectedCategory">
-          <div class="col" v-for="product in filteredProducts">
+          <div class="col" v-for="product in filteredProducts" :key="product.ProductID">
             <div class="card h-100 border-3 shadow-sm mt-2">
-              <img
-                :src="product.Image"
-                class="card-img-top"
-                alt="Product Image"
-                @click="goToProductPage(product.ProductName)"
-                style="max-width: 100%; height: auto"
-              />
+              <img :src="product.Image" class="card-img-top" alt="Product Image"
+                @click="goToProductPage(product.ProductName)" />
               <div class="card-body">
                 <h5 class="card-title mb-3">{{ product.ProductName }}</h5>
-                <p class="card-text mb-3 font-weight-bold">
-                  {{ product.RetailPrice }} Ft
-                </p>
-                <button
-                  class="btn btn-primary btn-sm"
-                  @click="addToCart(product)"
-                >
-                  Kosárba
-                </button>
+                <p class="card-text mb-3 font-weight-bold">{{ product.RetailPrice }} Ft</p>
+                <button class="btn btn-primary btn-sm" @click="addToCart(product)">Kosárba</button>
               </div>
             </div>
           </div>
         </div>
         <div v-else>
-          <div v-for="product in products" :key="product.ProductName">
+          <div class="col" v-for="product in products" :key="product.ProductID">
             <div class="card h-100 border-3 shadow-sm mt-2">
-              <img
-                :src="product.Image"
-                class="card-img-top"
-                alt="Product Image"
-                @click="goToProductPage(product.ProductName)"
-                style="max-width: 100%; height: auto"
-              />
+              <img :src="product.Image" class="card-img-top" alt="Product Image"
+                @click="goToProductPage(product.ProductName)" />
               <div class="card-body">
                 <h5 class="card-title mb-3">{{ product.ProductName }}</h5>
-                <p class="card-text mb-3 font-weight-bold">
-                  {{ product.RetailPrice }} Ft
-                </p>
-                <button
-                  class="btn btn-primary btn-sm"
-                  @click="addToCart(product)"
-                >
-                  Kosárba
-                </button>
+                <p class="card-text mb-3 font-weight-bold">{{ product.RetailPrice }} Ft</p>
+                <button class="btn btn-primary btn-sm" @click="addToCart(product)">Kosárba</button>
               </div>
             </div>
           </div>
@@ -79,58 +46,13 @@
       </div>
     </div>
   </div>
-
-  <!-- <DataView :value="products">
-    <template #list="slotProps">
-        <div class="grid grid-nogutter">
-            <div v-for="(item, index) in slotProps.items" :key="index" class="col-12">
-                <div class="flex flex-column sm:flex-row sm:align-items-center p-4 gap-3" :class="{ 'border-top-1 surface-border': index !== 0 }">
-                    <div class="md:w-10rem relative">
-                        <img class="block xl:block mx-auto border-round w-full" :src="`https://primefaces.org/cdn/primevue/images/product/${item.image}`" :alt="item.name" />
-                        <Tag :value="item.inventoryStatus" :severity="getSeverity(item)" class="absolute" style="left: 4px; top: 4px"></Tag>
-                    </div>
-                    <div class="flex flex-column md:flex-row justify-content-between md:align-items-center flex-1 gap-4">
-                        <div class="flex flex-row md:flex-column justify-content-between align-items-start gap-2">
-                            <div>
-                                <span class="font-medium text-secondary text-sm">{{ item.category }}</span>
-                                <div class="text-lg font-medium text-900 mt-2">{{ item.name }}</div>
-                            </div>
-                            <div class="surface-100 p-1" style="border-radius: 30px">
-                                <div class="surface-0 flex align-items-center gap-2 justify-content-center py-1 px-2" style="border-radius: 30px; box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.04), 0px 1px 2px 0px rgba(0, 0, 0, 0.06)">
-                                    <span class="text-900 font-medium text-sm">{{ item.rating }}</span>
-                                    <i class="pi pi-star-fill text-yellow-500"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-column md:align-items-end gap-5">
-                            <span class="text-xl font-semibold text-900">${{ item.price }}</span>
-                            <div class="flex flex-row-reverse md:flex-row gap-2">
-                                <Button icon="pi pi-heart" outlined></Button>
-                                <Button icon="pi pi-shopping-cart" label="Buy Now" :disabled="item.inventoryStatus === 'OUTOFSTOCK'" class="flex-auto md:flex-initial white-space-nowrap"></Button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </template>
-</DataView> -->
 </template>
 
 <script setup>
 import { ref, onMounted, computed } from "vue";
-// import productservices from "../../services/productservices";
-import { useUserStore } from "../../stores/userstore";
-import { storeToRefs } from "pinia";
 import { useShoppingStore } from "@/stores/shoppingStore";
 import productservices from "../../services/productservices";
-import Button from "primevue/button";
-import { useRouter, useRoute } from "vue-router";
-import "bootstrap";
-
-import DataView from "primevue/dataview";
-import DataViewLayoutOptions from "primevue/dataviewlayoutoptions";
-// optional
+import { useRouter } from "vue-router";
 
 const router = useRouter();
 const shoppingStore = useShoppingStore();
@@ -139,16 +61,14 @@ const selectedCategory = ref(null);
 onMounted(() => {
   shoppingStore.fetchProducts();
 });
+
 const { categories, products } = useProductData();
 const filteredProducts = computed(() => {
   if (!selectedCategory.value) {
     return products.value;
   }
-  return products.value.filter((p) => {
-    return p.CategoryID === selectedCategory.value.CategoryID;
-  });
+  return products.value.filter((p) => p.CategoryID === selectedCategory.value.CategoryID);
 });
-
 
 function useProductData() {
   const categories = ref([]);
@@ -164,6 +84,7 @@ function useProductData() {
 
   return { categories, products };
 }
+
 const goToProductPage = (ProductName) => {
   router.push({ name: "Termek", params: { ProductName } });
 };
@@ -171,12 +92,6 @@ const goToProductPage = (ProductName) => {
 const addToCart = (product) => {
   shoppingStore.addToCart(product);
 };
-
-// onMounted(() => {
-//   productservices.getAllProduct().then((data) => (products.value = data));
-// });
-
-// const products = ref();
 </script>
 
 <style scoped>
@@ -189,7 +104,19 @@ img {
 }
 
 .card {
+  width: 100%; /* Kártya teljes szélessége */
+  height: 100%; /* Kártya teljes magassága */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-img-top {
+  width: 100%; /* Kép teljes szélessége a kártyán belül */
+  height: 50%; /* Kép magassága a kártya felének a magassága */
+  object-fit: cover; /* A kép méretének megfelelően igazítva */
+}
+
+.card-body {
+  padding: 1.25rem; /* Kártya tartalom belső margója */
 }
 
 .card:hover {
@@ -204,7 +131,18 @@ img {
   /* margin-top: 10px;
   margin-bottom: 20px; */
 }
+
 a:hover {
   cursor: pointer;
+}
+
+.col {
+  display: inline-block;
+  width: 30%;
+  /* Válaszd az igényeidnek megfelelő szélességet */
+  margin-right: 10px;
+  /* Opcionális: szükség esetén adj margót a kártyák közé */
+  margin-bottom: 20px;
+  /* Opcionális: adj margót alulra a kártyák között */
 }
 </style>

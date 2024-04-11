@@ -30,11 +30,11 @@
                   <i aria-hidden="true" class="fa fa-trash"></i>
                   <span class="btn2">Törlés</span>
                 </p>
-                <i @click="data.incrementQ(item)" class="bi bi-caret-up"></i>
-                <span class="mx-2">
-                  {{ item.quantity }}
-                </span>
-                <i @click="data.decrementQ(item)" class="bi bi-caret-down"></i>
+                <i @click="data.incrementQ(item)" class="bi bi-plus-circle"></i>
+                      <span class="mx-2">
+                        {{ item.quantity }}
+                      </span>
+                      <i @click="data.decrementQ(item)" class="bi bi-dash-circle"></i>
               </div>
             </div>
           </div>
