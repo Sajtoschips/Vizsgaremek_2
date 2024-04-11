@@ -23,7 +23,7 @@ if (sessionStorage.getItem("user") != null) {
 </script>
 
 <template>
-  <div class="d-flex flex-column min-vh-100" style="padding-top: 5rem; padding-bottom: 8rem;">
+  <div class="d-flex flex-column min-vh-100">
     <AppNav/>
     <!-- <AppHeader/> -->
     <main class="flex-grow-1 content">
