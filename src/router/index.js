@@ -11,7 +11,7 @@ import PageNotFound from "../views/PageNotFound.vue"
 import ProfilView from "../views/user/ProfileView.vue"
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/', name: "Home", component: HomeView},
     { path: '/regisztracio', name:"Registration" ,component: RegistrationView},

@@ -8,7 +8,7 @@
     <div v-if="orders && orders.length > 0">
       <h2>Rendeléseim:</h2>
       <ul>
-        <!-- <div v-for="(order, index) in orders" :key="index">
+        <div v-for="(order, index) in orders" :key="index">
           <h3>Rendelés száma: {{ order.OrderNumber }}</h3>
           <ul>
             <li v-for="(item, itemIndex) in order.items" :key="itemIndex">
@@ -16,7 +16,7 @@
               {{ item.QuotedPrice }}, Mennyiség: {{ item.QuantityOrdered }}
             </li>
           </ul>
-        </div> -->
+        </div>
       </ul>
     </div>
     <div v-else>

@@ -31,10 +31,10 @@
                   <span class="btn2">Törlés</span>
                 </p>
                 <i @click="data.incrementQ(item)" class="bi bi-plus-circle"></i>
-                      <span class="mx-2">
-                        {{ item.quantity }}
-                      </span>
-                      <i @click="data.decrementQ(item)" class="bi bi-dash-circle"></i>
+                <span class="mx-2">
+                  {{ item.quantity }}
+                </span>
+                <i @click="data.decrementQ(item)" class="bi bi-dash-circle"></i>
               </div>
             </div>
           </div>
@@ -92,7 +92,15 @@ const teljesArSzallitassal = computed(() => {
 const placeOrder = () => {
   // Ha a felhasználó nincs bejelentkezve, átirányítjuk a bejelentkezési oldalra
   // Megrendelés leadása
-  data.placeOrder();
+  const orderData = []
+  data.cartItems.forEach((product) => {
+    orderData.push({
+      ProductNumber: product.ProductNumber,
+      QuantityOrdered: product.quantity,
+      QuotedPrice: product.RetailPrice,
+    });
+  });
+  data.placeOrder(orderData);
 
   // Irányítás a sikeres megrendelés oldalra
   // router.push("/profil");

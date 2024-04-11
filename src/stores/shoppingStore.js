@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import Axios from "../services/dataservice";
 import { useToast } from "vue-toastification";
+import router from "../router";
 
 const toast = useToast();
 
@@ -43,34 +44,44 @@ export const useShoppingStore = defineStore("cart", {
         });
     },
 
-    async placeOrder() {
+    async placeOrder(orderData) {
       try {
         // A felhasználó adatainak kiolvasása a sessionStorage-ből
         const user = JSON.parse(sessionStorage.getItem("user"));
+    
+        // Ellenőrizzük, hogy a felhasználó be van-e jelentkezve
+        if (!user || !user.token) {
+          // Ha nincs bejelentkezve, irányítsuk át a felhasználót a bejelentkezési oldalra
+          router.push("/bejelentkezes"); // Ezt a funkciót neked kell implementálnod
+          return; // Kilépünk a függvényből
+        }
+    
         const userToken = user.token;
-
+        console.log(userToken);
+    
         // Elküldjük az autentikációs tokent az Authorization header-ben
         const config = {
           headers: {
             Authorization: `Bearer ${userToken}`,
           },
         };
-
-        const orderData = {
-          cartItems: this.cartItems,
+    
+        await console.log(orderData);
           // Itt adhatsz hozzá további megrendelési adatokat
-        };
-
+    
         // Elküldjük az adatokat a szerverre az Authorization headerrel
-        const response = await Axios.post("/orders", [ {   "ProductNumber": 201,   "QuantityOrdered": 3,   "QuotedPrice": 261710 } ], {Authorization: `Bearer ${userToken}`} );
+        const response = await Axios.post("/orders", orderData, config);
         console.log("Megrendelés elküldve:", response.data);
-
+    
+        // Rendelésszám vagy más azonosító kinyerése a válaszból
+        const orderId = response.data.OrderNumber; // Az orderId a válasz objektumban található azonosító lehet
+    
         // Sikeres megrendelés esetén töröljük a kosár tartalmát a local storage-ból
         this.cartItems = [];
         saveToStorage("cartItems", this.cartItems);
-
+    
         // Sikeres megrendelés esetén üzenetet jelenítünk meg a felhasználónak
-        toast.success("A megrendelés sikeresen elküldve!");
+        toast.success(`A megrendelés (${orderId}) számú azonosítóval sikeresen elküldve!`);
       } catch (error) {
         console.error("Hiba történt a megrendelés során:", error);
         // Hiba esetén üzenetet jelenítünk meg a felhasználónak
