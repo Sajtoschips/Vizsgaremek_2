@@ -7,6 +7,8 @@ import AppFooter from "./components/AppFooter.vue";
 
 import { useUserStore } from "./stores/userstore";
 
+
+
 let { user, status } = useUserStore();
 
 if (sessionStorage.getItem("user") != null) {
@@ -20,16 +22,17 @@ if (sessionStorage.getItem("user") != null) {
   }
 }
 
+
 </script>
 
 <template>
   <div class="d-flex flex-column min-vh-100">
-    <AppNav/>
+    <AppNav />
     <!-- <AppHeader/> -->
     <main class="flex-grow-1 content">
       <RouterView />
     </main>
-    <AppFooter/>
+    <AppFooter />
   </div>
 </template>
 
@@ -37,7 +40,7 @@ if (sessionStorage.getItem("user") != null) {
 .min-vh-100 {
   min-height: 100vh;
 }
-.content{
+.content {
   padding-top: 0px;
 }
 </style>

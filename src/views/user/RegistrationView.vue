@@ -1,5 +1,5 @@
 <template>
-  <body>
+  <body style="padding-top: 5rem; padding-bottom: 8rem;">
     <div v-if="!regSuccess" class="wrapper">
       <h2>Regisztráció</h2>
       <form @submit.prevent="onRegister">
@@ -119,7 +119,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #4070f4;
+  background: white;
 }
 
 .wrapper {

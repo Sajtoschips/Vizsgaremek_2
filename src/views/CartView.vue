@@ -122,6 +122,7 @@ i {
 .wrapper {
   max-width: 1000px;
   margin: 0 auto;
+  margin-bottom: 20px;
 }
 .wrapper h1 {
   padding: 20px 0;

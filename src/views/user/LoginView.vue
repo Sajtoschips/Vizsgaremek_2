@@ -11,6 +11,7 @@
             placeholder="E-mail"
             v-model="loginForm.email"
             required
+            :class="{ 'error': loginError }"
           />
         </div>
         <div class="input-box">
@@ -21,6 +22,7 @@
             placeholder="Jelszó"
             v-model="loginForm.password"
             required
+            :class="{ 'error': loginError }"
           />
         </div>
         <div class="input-box button">
@@ -32,6 +34,7 @@
             <a href="/regisztracio">Regisztrálj most!</a>
           </h3>
         </div>
+        <div v-if="loginError" class="error-message">Hibás e-mail cím vagy jelszó!</div>
       </form>
     </div>
     <div v-else class="alert alert-success col-12 col-md-6 mx-auto">
@@ -56,13 +59,17 @@ const router = useRouter();
 
 const loginForm = ref({});
 const logSuccess = ref(false);
+const loginError = ref(false);
 
 function onLogin() {
+  loginError.value = false; // Alaphelyzetbe állítás minden bejelentkezési kísérlet előtt
   login(loginForm.value).then(() => {
     logSuccess.value = true;
     setTimeout(() => {
       router.push("/");
     }, 2000);
+  }).catch(() => {
+    loginError.value = true; // Hiba esetén a loginError értékét true-ra állítjuk
   });
 }
 </script>
@@ -75,6 +82,16 @@ function onLogin() {
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+}
+
+.error {
+  border-color: red !important; /* Fontos, hogy a !important-et használjuk, hogy felülírjuk a többi stílust */
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
 }
 
 body {
