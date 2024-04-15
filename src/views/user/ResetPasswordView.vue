@@ -1,9 +1,10 @@
 <template>
   <body>
-    <h1>Jelszó helyreállítás</h1>
+    <h1>Jelszó helyreállítás</h1> 
     
     <div>
-      <input type="text" />
+      <input type="password"/>
+      <button>MEG KELL MÉG CSINÁLNI H JELSZÓT LEHESSEN VELE VÁLTOZTATNI</button>  
     </div>
   </body>
 </template>
