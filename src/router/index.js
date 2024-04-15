@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import RegistrationView from '../views/user/RegistrationView.vue'
 import LoginView from '../views/user/LoginView.vue'
 import ProductsView from '../views/productsViews/ProductsView.vue'
+import AboutView from '../views/AboutView.vue'
+import ContactView from '../views/ContactView.vue'
 import CartView from '../views/CartView.vue'
 import { useUserStore } from '../stores/userstore'
 import ProductDetailsView from '../views/productsViews/ProductDetailsView.vue'
@@ -12,12 +14,15 @@ import ProfilView from "../views/user/ProfileView.vue"
 import ResetPasswordView from "../views/user/ResetPasswordView.vue"
 import SendEmail from '../views/user/sendEmail.vue'
 
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/', name: "Home", component: HomeView},
     { path: '/regisztracio', name:"Registration" ,component: RegistrationView},
     { path: '/bejelentkezes', name: "Login",component: LoginView},
+    { path: '/rolunk', name: "AboutUs",component: AboutView},
+    { path: '/kontakt', name: "Contact",component: ContactView},
     { path: '/termekek', name: "Termekek", component: ProductsView},
     { path: '/kosar', name: "Kosar", component: CartView},
     { path: '/termek/:ProductName', name: "Termek", component: ProductDetailsView},
