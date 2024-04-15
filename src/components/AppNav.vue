@@ -23,8 +23,18 @@
           >Termékek</router-link
         >
       </li>
-      <li><a class="link">Rólunk</a></li>
-      <li><a class="link">Elérhetőség</a></li>
+      <li><router-link
+          class="link"
+          :to="{ name: 'AboutUs' }"
+          @click="CloseNavElements"
+          >Rólunk</router-link
+        ></li>
+      <li><router-link
+          class="link"
+          :to="{ name: 'Contact' }"
+          @click="CloseNavElements"
+          >Elérhetőségek</router-link
+        ></li>
     </ul>
     <div class="header-icons">
       <i id="menu-icon" class="bx bx-menu" @click="toggleNavbar"></i>
