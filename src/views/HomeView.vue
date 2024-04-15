@@ -48,12 +48,12 @@
     </div>
 
     <!-- Termékkártyák -->
-    <div class="row mt-4">
+    <!-- <div class="row mt-4">
       <div class="col">
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div class="col">
             <div class="card h-100">
-              <img src="../assets/img/product1.jpg" class="card-img-top" alt="...">
+              <img src="" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Termék 1</h5>
                 <p class="card-text">Rövid leírás a termékről. Kattints a részletekért!</p>
@@ -63,7 +63,7 @@
           </div>
           <div class="col">
             <div class="card h-100">
-              <img src="../assets/img/product2.jpg" class="card-img-top" alt="...">
+              <img src="" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Termék 2</h5>
                 <p class="card-text">Rövid leírás a termékről. Kattints a részletekért!</p>
@@ -73,7 +73,7 @@
           </div>
           <div class="col">
             <div class="card h-100">
-              <img src="../assets/img/product3.jpg" class="card-img-top" alt="...">
+              <img src="" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Termék 3</h5>
                 <p class="card-text">Rövid leírás a termékről. Kattints a részletekért!</p>
@@ -83,7 +83,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
