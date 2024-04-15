@@ -1,46 +1,52 @@
 <template>
   <div class="container-fluid" style="padding-top: 5rem; padding-bottom: 8rem">
-    <div class="row">
-      <!-- Side Navigation -->
-      <div class="col-md-3 col-lg-3 col-sm-12">
-        <div class="list-group" id="list-tab" role="tablist">
-          <a class="list-group-item" :class="{ active: selectedCategory === null }" @click="selectedCategory = null">
+    <div>
+      <div class="d-flex justify-content-center">
+        <div class="list-group w-50" id="list-tab" role="tablist">
+          <a class="list-group-item text-center" :class="{ active: selectedCategory === null }"
+            @click="selectedCategory = null">
             Összes termék
           </a>
 
-          <a v-for="cat in categories" :key="cat.CategoryID" class="list-group-item"
+          <a v-for="cat in categories" :key="cat.CategoryID" class="list-group-item text-center"
             :class="{ active: selectedCategory === cat }" @click="selectedCategory = cat">
             {{ cat.CategoryName }}
           </a>
         </div>
       </div>
+    </div>
+    <div class="">
+      <!-- Side Navigation -->
 
       <!-- Products -->
-      <div class="row row-cols-12 row-cols-md-12 ">
-        <div v-if="selectedCategory">
-          <div class="col" v-for="product in filteredProducts" :key="product.ProductID">
-            <div class="card h-100 border-3 shadow-sm mt-2">
-              <img :src="product.Image" class="card-img-top" alt="Product Image"
-                @click="goToProductPage(product.ProductName)" />
-              <div class="card-body">
+      <div class="">
+        <div v-if="selectedCategory" class="row">
+          <div class="col-sm-12 col-md-4 col-lg-3 mb-2" v-for="product in filteredProducts" :key="product.ProductID">
+            <div class="h-100 card d-flex flex-column h-100 border-3 shadow-sm d-flex align-content-end flex-wrap">
+                <img :src="product.Image" class="card-img-top h-auto" alt="Product Image"
+                  @click="goToProductPage(product.ProductName)" />
+                <div class="card-body ">
+                </div>
                 <h5 class="card-title mb-3">{{ product.ProductName }}</h5>
                 <p class="card-text mb-3 font-weight-bold">{{ product.RetailPrice }} Ft</p>
-                <button class="btn btn-primary btn-sm" @click="addToCart(product)">Kosárba</button>
+                <button class="btn btn-sm btn-primary m-2" @click="addToCart(product)">Kosárba</button> 
               </div>
-            </div>
           </div>
         </div>
-        <div v-else>
-          <div class="col" v-for="product in products" :key="product.ProductID">
-            <div class="card h-100 border-3 shadow-sm mt-2">
-              <img :src="product.Image" class="card-img-top" alt="Product Image"
-                @click="goToProductPage(product.ProductName)" />
-              <div class="card-body">
+        <div v-else class="row">
+          <div class="col-sm-12 col-md-4 col-lg-3 mb-2 " v-for="product in products" :key="product.ProductID">
+            
+              <div class="h-100 card d-flex flex-column h-100 border-3 shadow-sm d-flex align-content-end flex-wrap">
+                <img :src="product.Image" class="card-img-top h-auto" alt="Product Image"
+                  @click="goToProductPage(product.ProductName)" />
+                <div class="card-body">
+                </div>
                 <h5 class="card-title mb-3">{{ product.ProductName }}</h5>
                 <p class="card-text mb-3 font-weight-bold">{{ product.RetailPrice }} Ft</p>
-                <button class="btn btn-primary btn-sm" @click="addToCart(product)">Kosárba</button>
+                <button class="btn btn-sm btn-primary m-2" @click="addToCart(product)">Kosárba</button> 
               </div>
-            </div>
+       
+
           </div>
         </div>
       </div>
@@ -104,19 +110,25 @@ img {
 }
 
 .card {
-  width: 100%; /* Kártya teljes szélessége */
-  height: 100%; /* Kártya teljes magassága */
+  width: 100%;
+  /* Kártya teljes szélessége */
+  height: 100%;
+  /* Kártya teljes magassága */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card-img-top {
-  width: 100%; /* Kép teljes szélessége a kártyán belül */
-  height: 50%; /* Kép magassága a kártya felének a magassága */
-  object-fit: cover; /* A kép méretének megfelelően igazítva */
+  width: 100%;
+  /* Kép teljes szélessége a kártyán belül */
+  height: 50%;
+  /* Kép magassága a kártya felének a magassága */
+  object-fit: cover;
+  /* A kép méretének megfelelően igazítva */
 }
 
 .card-body {
-  padding: 1.25rem; /* Kártya tartalom belső margója */
+  padding: 1.25rem;
+  /* Kártya tartalom belső margója */
 }
 
 .card:hover {
@@ -136,13 +148,10 @@ a:hover {
   cursor: pointer;
 }
 
-.col {
+/* .col {
   display: inline-block;
   width: 30%;
-  /* Válaszd az igényeidnek megfelelő szélességet */
   margin-right: 10px;
-  /* Opcionális: szükség esetén adj margót a kártyák közé */
   margin-bottom: 20px;
-  /* Opcionális: adj margót alulra a kártyák között */
-}
+} */
 </style>

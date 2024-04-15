@@ -16,7 +16,6 @@ const route = useRoute()
 
 const token = route.params.token
 console.log(token);
-
 </script>
 
 <style scoped>

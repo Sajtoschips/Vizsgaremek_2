@@ -222,7 +222,7 @@ const toggleUser = () => {
 
 .btn {
   padding: 0.7rem 1.2rem;
-  background: #00afea;
+  background: #4070f4;
   color: var(--bg-color);
   font-weight: 500;
   display: inline-block;
@@ -443,7 +443,7 @@ li {
 }
 
 .user .login-btn {
-  background: #00afea;
+  background: #4070f4;
   color: var(--bg-color);
   font-size: 1rem;
   text-transform: uppercase;
