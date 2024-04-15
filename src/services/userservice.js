@@ -35,5 +35,14 @@ export default {
       .catch(err => {
         return Promise.reject(err.response);
       })
-  }
+  },
+  sendEmail(email){
+    return Axios.post('/forgotPassword', {"email":email})
+      .then(resp => {
+        return resp;
+      })
+      .catch(err => {
+        return Promise.reject(err.response);
+      })
+  },
 }

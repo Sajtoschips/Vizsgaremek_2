@@ -1,11 +1,23 @@
 <template>
   <body>
     <h1>Jelszó helyreállítás</h1>
+    
     <div>
       <input type="text" />
     </div>
   </body>
 </template>
+
+
+<script setup>
+import { useRoute } from "vue-router";
+
+const route = useRoute()
+
+const token = route.params.token
+console.log(token);
+
+</script>
 
 <style scoped>
 body {

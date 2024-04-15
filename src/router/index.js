@@ -10,6 +10,7 @@ import { storeToRefs } from 'pinia'
 import PageNotFound from "../views/PageNotFound.vue"
 import ProfilView from "../views/user/ProfileView.vue"
 import ResetPasswordView from "../views/user/ResetPasswordView.vue"
+import SendEmail from '../views/user/sendEmail.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,7 +23,9 @@ const router = createRouter({
     { path: '/termek/:ProductName', name: "Termek", component: ProductDetailsView},
     { path: '/:pathName(.*)*', name: "PageNotFound", component: PageNotFound},
     { path: '/profil', name: "Profil", component: ProfilView},
-    { path: '/jelszohelyreallitas', name: "Elfelejtett jelszo", component: ResetPasswordView},
+    { path: '/jelszohelyreallitas/:token', name: "Elfelejtett jelszo", component: ResetPasswordView},
+    { path: '/sendEmail', name: "Elfelejtett jelszo megadasa", component: SendEmail},
+
   ]
 })
 

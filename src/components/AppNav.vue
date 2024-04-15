@@ -93,7 +93,7 @@
         Elfelejtett jelszó?
         <router-link
           @click="CloseNavElements"
-          :to="{ name: 'Elfelejtett jelszo' }"
+          to="/sendEmail"
           >Visszaállítás</router-link
         >
       </p>
