@@ -41,7 +41,6 @@ const changePassword = () => {
     userservice
       .changePassword(token, newPassword.value)
       .then(() => {
-        console.log(newPassword.value);
         // Sikeres jelszóváltoztatás esetén itt végezhetsz további teendőket
         console.log("Jelszó sikeresen megváltoztatva");
       })
