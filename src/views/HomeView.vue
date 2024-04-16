@@ -57,7 +57,7 @@
           <!-- Akciós termék 1 -->
           <div class="col">
             <div class="card h-100">
-              <img src="../assets/img/sale1.jpg" class="card-img-top" alt="Akciós termék 1">
+              <img src="" class="card-img-top" alt="Akciós termék 1">
               <div class="card-body">
                 <h5 class="card-title">Termék neve</h5>
                 <p class="card-text">Leírás röviden. <br> Régi ár: <s>2000 Ft</s> <br> Új ár: 1500 Ft</p>
@@ -68,7 +68,7 @@
           <!-- Akciós termék 2 -->
           <div class="col">
             <div class="card h-100">
-              <img src="../assets/img/sale2.jpg" class="card-img-top" alt="Akciós termék 2">
+              <img src="" class="card-img-top" alt="Akciós termék 2">
               <div class="card-body">
                 <h5 class="card-title">Termék neve</h5>
                 <p class="card-text">Leírás röviden. <br> Régi ár: <s>3000 Ft</s> <br> Új ár: 2500 Ft</p>
@@ -79,7 +79,7 @@
           <!-- Akciós termék 3 -->
           <div class="col">
             <div class="card h-100">
-              <img src="../assets/img/sale3.jpg" class="card-img-top" alt="Akciós termék 3">
+              <img src="" class="card-img-top" alt="Akciós termék 3">
               <div class="card-body">
                 <h5 class="card-title">Termék neve</h5>
                 <p class="card-text">Leírás röviden. <br> Régi ár: <s>4000 Ft</s> <br> Új ár: 3500 Ft</p>
@@ -99,7 +99,7 @@
           <!-- Népszerű termék 1 -->
           <div class="col">
             <div class="card h-100">
-              <img src="../assets/img/popular1.jpg" class="card-img-top" alt="Népszerű termék 1">
+              <img src="" class="card-img-top" alt="Népszerű termék 1">
               <div class="card-body">
                 <h5 class="card-title">Termék neve</h5>
                 <p class="card-text">Leírás röviden.</p>
@@ -110,7 +110,7 @@
           <!-- Népszerű termék 2 -->
           <div class="col">
             <div class="card h-100">
-              <img src="../assets/img/popular2.jpg" class="card-img-top" alt="Népszerű termék 2">
+              <img src="" class="card-img-top" alt="Népszerű termék 2">
               <div class="card-body">
                 <h5 class="card-title">Termék neve</h5>
                 <p class="card-text">Leírás röviden.</p>
@@ -121,7 +121,7 @@
           <!-- Népszerű termék 3 -->
           <div class="col">
             <div class="card h-100">
-              <img src="../assets/img/popular3.jpg" class="card-img-top" alt="Népszerű termék 3">
+              <img src="" class="card-img-top" alt="Népszerű termék 3">
               <div class="card-body">
                 <h5 class="card-title">Termék neve</h5>
                 <p class="card-text">Leírás röviden.</p>
@@ -132,7 +132,7 @@
           <!-- Népszerű termék 4 -->
           <div class="col">
             <div class="card h-100">
-              <img src="../assets/img/popular4.jpg" class="card-img-top" alt="Népszerű termék 4">
+              <img src="" class="card-img-top" alt="Népszerű termék 4">
               <div class="card-body">
                 <h5 class="card-title">Termék neve</h5>
                 <p class="card-text">Leírás röviden.</p>

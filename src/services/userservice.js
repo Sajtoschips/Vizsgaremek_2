@@ -48,8 +48,13 @@ export default {
       });
   },
   changePassword(token, newPassword) {
-    return Axios.post("/resetPassword", { token, newPassword })
-      .then((resp) => resp.data)
+    return Axios.post("/resetPassword", { token, "password":newPassword })
+      .then((resp) =>{
+        resp.data
+        console.log(newPassword, resp.data); 
+      }
+       )
       .catch((err) => Promise.reject(err.response));
-  },
-};
+  
+    },
+  };
