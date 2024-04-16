@@ -8,21 +8,20 @@
       <li class="social-icon__item"><a class="social-icon__link" target="_blank" href="https://discord.gg/d57TACK389">
           <ion-icon name="logo-discord"></ion-icon>
         </a></li>
-      <li class="social-icon__item"><a class="social-icon__link"  href="mailto:info.gamestrix@gmail.com">
-        <ion-icon name="mail-outline"></ion-icon>
+      <li class="social-icon__item"><a class="social-icon__link" href="mailto:info.gamestrix@gmail.com">
+          <ion-icon name="mail-outline"></ion-icon>
         </a></li>
-      
-    </ul>
-    <!-- <ul class="menu">
-      <li  class="menu__item"><a class="menu__link" href="/">Home</a></li>
-      <li class="menu__item"><a class="menu__link" href="">About</a></li>
-      <li class="menu__item"><a class="menu__link" href="#">Services</a></li>
-      <li class="menu__item"><a class="menu__link" href="#">Team</a></li>
-      <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
 
-    </ul> -->
+    </ul>
+    <ul class="menu">
+      <li class="menu__item"><router-link class="menu__link" to="/">Nyitó oldal</router-link></li>
+      <li class="menu__item"><router-link class="menu__link" to="/termekek">Termékek</router-link></li>
+      <li class="menu__item"><router-link class="menu__link" to="/rolunk">Rólunk</router-link></li>
+      <li class="menu__item"><router-link class="menu__link" to="/csapat">Csapat</router-link></li>
+      <li class="menu__item"><router-link class="menu__link" to="/kontakt">Elérhetőség</router-link></li>
+
+    </ul>
     <p>&copy;2024 GameStrix webáruház</p>
-    <p>Boglári Bence | Horváth Máté | Vida Csaba Zsombor</p>
   </footer>
 </template>
 
@@ -30,5 +29,4 @@
 
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

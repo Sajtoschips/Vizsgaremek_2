@@ -30,7 +30,7 @@ if (sessionStorage.getItem("user") != null) {
     <AppNav />
     <!-- <AppHeader/> -->
     <main class="flex-grow-1 content">
-      <RouterView />
+      <RouterView/>
     </main>
     <AppFooter />
   </div>

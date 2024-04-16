@@ -23,18 +23,22 @@
           >Termékek</router-link
         >
       </li>
-      <li><router-link
+      <li>
+        <router-link
           class="link"
           :to="{ name: 'AboutUs' }"
           @click="CloseNavElements"
           >Rólunk</router-link
-        ></li>
-      <li><router-link
+        >
+      </li>
+      <li>
+        <router-link
           class="link"
           :to="{ name: 'Contact' }"
           @click="CloseNavElements"
           >Elérhetőségek</router-link
-        ></li>
+        >
+      </li>
     </ul>
     <div class="header-icons">
       <i id="menu-icon" class="bx bx-menu" @click="toggleNavbar"></i>
@@ -51,13 +55,18 @@
           :key="item.ProductNumber"
           class="box"
         >
-          <img :src="item.Image" />
+          <img :src="item.Image" :alt="item.ProductName" />
           <div class="text">
             <h3>{{ item.ProductName }}</h3>
-            <span>{{ item.RetailPrice }}</span>
-            <span>{{ item.quantity }}</span>
+            <span>{{ item.RetailPrice }} Ft</span>
+            <br />
+            <i @click="data.incrementQ(item)" class="bi bi-plus-circle"></i>
+            <span class="mx-2">
+              {{ item.quantity }}
+            </span>
+            <i @click="data.decrementQ(item)" class="bi bi-dash-circle"></i>
           </div>
-          <i @click="data.removeFromCart(item)" class="bx bxs-trash-alt"></i>
+            <i @click="data.removeFromCart(item)" class="bx bxs-trash-alt"></i>
         </div>
         <br />
         <h2>Összesen: {{ teljesAr }} Ft</h2>
@@ -101,9 +110,7 @@
       </div>
       <p v-if="!status.loggedIn">
         Elfelejtett jelszó?
-        <router-link
-          @click="CloseNavElements"
-          to="/sendEmail"
+        <router-link @click="CloseNavElements" to="/sendEmail"
           >Visszaállítás</router-link
         >
       </p>
@@ -141,9 +148,7 @@ function onLogin() {
   login(loginForm.value)
     .then(() => {
       logSuccess.value = true;
-      toast.success(
-        `Sikeres bejelentkezés`
-      );
+      toast.success(`Sikeres bejelentkezés`);
       setTimeout(() => {
         router.push("/");
         CloseNavElements();
@@ -206,6 +211,10 @@ const toggleUser = () => {
 </script>
 
 <style scoped>
+
+i{
+  cursor: pointer;
+}
 .error {
   border-color: red !important; /* Fontos, hogy a !important-et használjuk, hogy felülírjuk a többi stílust */
 }
@@ -414,6 +423,7 @@ li {
 
 .cart .box .bx {
   font-size: 24px;
+  
 }
 
 .cart .box .bx:hover {

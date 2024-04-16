@@ -12,52 +12,55 @@
     </div>
 </div> -->
 
-    <div class="container-fluid" style="padding-top: 5rem; padding-bottom: 8rem">
+    <body>
 
 
-        <div class="card-wrapper">
-            <div class="card">
-                <!-- card left -->
-                <div class="product-imgs">
-                    <div class="img-display">
-                        <div class="img-showcase">
-                            <img :src="SelectedProduct.Image" alt="shoe image">
+        <div class="container-fluid" style="padding-top: 5rem; padding-bottom: 8rem">
 
+            <div class="card-wrapper">
+                <div class="card">
+                    <!-- card left -->
+                    <div class="product-imgs">
+                        <div class="img-display">
+                            <div class="img-showcase">
+                                <img :src="SelectedProduct.Image" alt="shoe image">
+
+                            </div>
                         </div>
+
                     </div>
-
-                </div>
-                <!-- card right -->
-                <div class="product-content">
-                    <h2 class="product-title">{{ SelectedProduct.ProductName }}</h2>
+                    <!-- card right -->
+                    <div class="product-content">
+                        <h2 class="product-title">{{ SelectedProduct.ProductName }}</h2>
 
 
 
-                    <div class="product-price">
-                        <p class="price">Ár: <span>{{ SelectedProduct.RetailPrice }} Ft</span></p>
-                    </div>
+                        <div class="product-price">
+                            <p class="price">Ár: <span>{{ SelectedProduct.RetailPrice }} Ft</span></p>
+                        </div>
 
-                    <div class="product-detail">
-                        <h2>Termék leírás: </h2>
-                        <p>{{ SelectedProduct.ProductDescription }}</p>
-                        <ul>
+                        <div class="product-detail">
+                            <h2>Termék leírás: </h2>
+                            <p>{{ SelectedProduct.ProductDescription }}</p>
+                            <ul>
 
-                            <li>Raktáron: <span>{{ SelectedProduct.QuantityOnHand }} db</span></li>
-                            <li>Kategória: <span></span></li>
-                            <li>Szállítás: <span>Belföldön bárhova.</span></li>
-                            <li>Szállítási költség: <span> 1.500 Ft (100.000 Ft felett ingyenes)</span></li>
-                        </ul>
-                    </div>
+                                <li>Raktáron: <span>{{ SelectedProduct.QuantityOnHand }} db</span></li>
+                                <li>Kategória: <span></span></li>
+                                <li>Szállítás: <span>Belföldön bárhova.</span></li>
+                                <li>Szállítási költség: <span> 1.500 Ft (100.000 Ft felett ingyenes)</span></li>
+                            </ul>
+                        </div>
 
-                    <div class="purchase-info">
-                        <button @click="addToCart(SelectedProduct)" type="button" class="btn btn-primary">
-                            Add to Cart <i class="bi bi-cart-plus-fill"></i>
-                        </button>
+                        <div class="purchase-info">
+                            <button @click="addToCart(SelectedProduct)" type="button" class="btn btn-primary">
+                                Add to Cart <i class="bi bi-cart-plus-fill"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </body>
 </template>
 
 
@@ -96,7 +99,7 @@ const addToCart = (product) => {
 }
 
 body {
-    line-height: 1.5;
+    background: #6aa7ff;
 }
 
 .card-wrapper {

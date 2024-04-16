@@ -1,7 +1,16 @@
 <template>
   <body>
     <div class="cart-content" style="width: 100%">
-      <div class="wrapper" v-if="data.cartItems.length === 0">
+      <div class="wrapper text-center" v-if="!status.loggedIn && data.cartItems.length > 0">
+        <h2>Csak regisztrált felhasználó vásárolhat!</h2>
+        <p>
+          Kérjük
+          <router-link to="/bejelentkezes">jelentkezz be</router-link> vagy
+          <router-link to="/regisztracio">regisztrálj</router-link> a
+          vásárláshoz.
+        </p>
+      </div>
+      <div class="wrapper" v-else-if="data.cartItems.length === 0">
         <h1>A kosár tartalma üres!</h1>
         <p class="text-center">
           Kattints a <router-link to="/termekek">termékek</router-link> fülre és
@@ -65,8 +74,10 @@
 <script setup>
 import { useShoppingStore } from "../stores/shoppingStore";
 import { computed } from "vue";
+import { storeToRefs } from "pinia";
 import { useUserStore } from "../stores/userstore";
 import { useRouter } from "vue-router";
+const { status } = storeToRefs(useUserStore());
 
 // get store
 const data = useShoppingStore();
@@ -92,7 +103,7 @@ const teljesArSzallitassal = computed(() => {
 const placeOrder = () => {
   // Ha a felhasználó nincs bejelentkezve, átirányítjuk a bejelentkezési oldalra
   // Megrendelés leadása
-  const orderData = []
+  const orderData = [];
   data.cartItems.forEach((product) => {
     orderData.push({
       ProductNumber: product.ProductNumber,
