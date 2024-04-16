@@ -299,5 +299,5 @@ h3 {
 h2 {
     text-align: center;
 
-}
+    }
 </style>
