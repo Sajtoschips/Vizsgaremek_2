@@ -1,123 +1,132 @@
 <template>
-    <div class="container-fluid" style="padding-top: 5rem; padding-bottom: 8rem">
-        <div>
-            <div class="d-flex justify-content-center">
-                <div class="list-group w-50" id="list-tab" role="tablist">
-                    <a class="list-group-item text-center" :class="{ active: selectedCategory === null }"
-                        @click="selectedCategory = null">
-                        Összes termék
-                    </a>
+    <body>
 
-                    <a v-for="cat in categories" :key="cat.CategoryID" class="list-group-item text-center"
-                        :class="{ active: selectedCategory === cat }" @click="selectedCategory = cat">
-                        {{ cat . CategoryName }}
-                    </a>
+
+        <div class="container-fluid" style="padding-top: 5rem; padding-bottom: 8rem">
+            <div class="container">
+
+
+                <nav class="navbar navbar-expand-lg bg-dark text-light m-2 rounded-3">
+                    <a @click="selectedCategory = null" style="margin-left: 10px;" class="navbar-brand text-white">Összes termék</a>
+                    <button style="margin-right: 10px;" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
+                        <ul style="margin-left: 10px;" class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li v-for="cat in categories" :key="cat.CategoryID" class="nav-item">
+                                <a class="nav-link text-white" href="#" @click="selectedCategory = cat">{{ cat.CategoryName }}</a>
+                            </li>
+                        </ul>
+                        <form class="d-flex m-2 justify-content-center " role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+            <!-- <div class=""> -->
+            <!-- Side Navigation -->
+
+            <!-- Products -->
+
+            <div v-if="selectedCategory" class="row justify-content-center">
+                <div class="col-3 card m-1 mb-5 card-deck" v-for="product in filteredProducts" :key="product.ProductID">
+                    <div class="imgBox">
+                        <img @click="goToProductPage(product.ProductName)" :src="product.Image" class="mouse">
+                    </div>
+                    <div class="contentBox">
+                        <h3>{{ product.ProductName }}</h3>
+                        <h2 class="price">{{ product.RetailPrice }} Ft</h2>
+                        <a href="#" @click="addToCart(product)" class="buy">Vásárlás</a>
+                    </div>
+                </div>
+            </div>
+            <div v-else class="row justify-content-center">
+                <div class="col-3 card m-1 mb-5 card-deck" v-for="product in products" :key="product.ProductID">
+                    <div class="imgBox">
+                        <img @click="goToProductPage(product.ProductName)" :src="product.Image" class="mouse">
+                    </div>
+                    <div class="contentBox">
+                        <h3>{{ product.ProductName }}</h3>
+                            <h2 class="price">{{ product.RetailPrice }} Ft</h2>
+                        <a href="#" @click="addToCart(product)" class="buy">Vásárlás</a>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- <div class=""> -->
-        <!-- Side Navigation -->
-
-        <!-- Products -->
-
-        <div v-if="selectedCategory" class="row justify-content-center">
-          <div class="col-3 card m-1 mb-5 card-deck" v-for="product in filteredProducts" :key="product.ProductID">
-                <div class="imgBox">
-                    <img  @click="goToProductPage(product.ProductName)" :src="product.Image" class="mouse">
-                </div>
-                <div class="contentBox">
-                    <h3>{{ product .ProductName }}</h3>
-                    <h2 class="price">{{ product .RetailPrice }} Ft</h2>
-                    <a href="#" @click="addToCart(product)" class="buy">Vásárlás</a>
-                </div>
-            </div>
-        </div>
-        <div v-else class="row justify-content-center">
-            <div class="col-3 card m-1 mb-5 card-deck" v-for="product in products" :key="product.ProductID">
-                <div class="imgBox">
-                    <img @click="goToProductPage(product.ProductName)" :src="product.Image" class="mouse">
-                </div>
-                <div class="contentBox">
-                    <h3>{{ product .ProductName }}</h3>
-                    <h2 class="price">{{ product . RetailPrice }} Ft</h2>
-                    <a href="#" @click="addToCart(product)" class="buy">Vásárlás</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
+    </body>
 </template>
 
 <script setup>
-    import {
-        ref,
-        onMounted,
-        computed
-    } from "vue";
-    import {
-        useShoppingStore
-    } from "@/stores/shoppingStore";
-    import productservices from "../../services/productservices";
-    import {
-        useRouter
-    } from "vue-router";
+import {
+    ref,
+    onMounted,
+    computed
+} from "vue";
+import {
+    useShoppingStore
+} from "@/stores/shoppingStore";
+import productservices from "../../services/productservices";
+import {
+    useRouter
+} from "vue-router";
 
-    const router = useRouter();
-    const shoppingStore = useShoppingStore();
-    const selectedCategory = ref(null);
 
-    onMounted(() => {
-        shoppingStore.fetchProducts();
+const router = useRouter();
+const shoppingStore = useShoppingStore();
+const selectedCategory = ref(null);
+
+onMounted(() => {
+    shoppingStore.fetchProducts();
+});
+
+const {
+    categories,
+    products
+} = useProductData();
+const filteredProducts = computed(() => {
+    if (!selectedCategory.value) {
+        return products.value;
+    }
+    return products.value.filter((p) => p.CategoryID === selectedCategory.value.CategoryID);
+});
+
+function useProductData() {
+    const categories = ref([]);
+    const products = ref([]);
+
+    productservices.getAllCategories().then((cats) => {
+        categories.value = cats;
     });
 
-    const {
+    productservices.getAllProduct().then((prods) => {
+        products.value = prods;
+    });
+
+    return {
         categories,
         products
-    } = useProductData();
-    const filteredProducts = computed(() => {
-        if (!selectedCategory.value) {
-            return products.value;
+    };
+}
+
+const goToProductPage = (ProductName) => {
+    router.push({
+        name: "Termek",
+        params: {
+            ProductName
         }
-        return products.value.filter((p) => p.CategoryID === selectedCategory.value.CategoryID);
     });
+};
 
-    function useProductData() {
-        const categories = ref([]);
-        const products = ref([]);
-
-        productservices.getAllCategories().then((cats) => {
-            categories.value = cats;
-        });
-
-        productservices.getAllProduct().then((prods) => {
-            products.value = prods;
-        });
-
-        return {
-            categories,
-            products
-        };
-    }
-
-    const goToProductPage = (ProductName) => {
-        router.push({
-            name: "Termek",
-            params: {
-                ProductName
-            }
-        });
-    };
-
-    const addToCart = (product) => {
-        shoppingStore.addToCart(product);
-    };
+const addToCart = (product) => {
+    shoppingStore.addToCart(product);
+};
 </script>
 
 <style scoped>
-    /* img {
+/* img {
   width: 100%;
   height: auto;
   width: 50%;
@@ -156,62 +165,66 @@ a:hover {
   cursor: pointer;
 } */
 
-    * {
-        margin: 0;
-        padding: 0;
-        font-family: "Istok Web", sans-serif;
-    }
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Istok Web", sans-serif;
+}
 
-    body {
-        min-height: 100vh;
-        background: #212121;
-    }
+body {
+    min-height: 100vh;
+    background: #6aa7ff;
+}
 
-    .card {
-        position: relative;
-        width: 320px;
-        height: 480px;
-        background: black;
-        border-radius: 20px;
-        overflow: hidden;
-    }
+a {
+    cursor: pointer;
+}
 
-    .card::before {
-        content: "";
-        position: absolute;
-        top: -50%;
-        width: 100%;
-        height: 100%;
-        background: #4070f4;
-        transform: skewY(345deg);
-        transition: 0.5s;
-    }
+.card {
+    position: relative;
+    width: 320px;
+    height: 480px;
+    background: black;
+    border-radius: 20px;
+    overflow: hidden;
+}
 
-    .card:hover::before {
-        top: -70%;
-        transform: skewY(390deg);
-    }
+.card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    width: 100%;
+    height: 100%;
+    background: #4070f4;
+    transform: skewY(345deg);
+    transition: 0.5s;
+}
 
-    .card::after {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        font-weight: 600;
-        font-size: 6em;
-        color: rgba(0, 0, 0, 0.1);
-    }
+.card:hover::before {
+    top: -70%;
+    transform: skewY(390deg);
+}
 
-    .card .imgBox {
-        position: relative;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        /* padding-top: 20px; */
-        z-index: 1;
-    }
+.card::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-weight: 600;
+    font-size: 6em;
+    color: rgba(0, 0, 0, 0.1);
+}
 
-    /*
+.card .imgBox {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding-top: 20px; */
+    z-index: 1;
+}
+
+/*
 .card .imgBox img {
     max-width: 100%;
 
@@ -223,68 +236,68 @@ a:hover {
 
 }
 */
-    .card .contentBox {
-        position: relative;
-        padding: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        z-index: 2;
-    }
+.card .contentBox {
+    position: relative;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 2;
+}
 
-    .card .contentBox h3 {
-        font-size: 18px;
-        color: white;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
+.card .contentBox h3 {
+    font-size: 18px;
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 
-    .card .contentBox .price {
-        font-size: 24px;
-        color: white;
-        font-weight: 700;
-        letter-spacing: 1px;
-    }
+.card .contentBox .price {
+    font-size: 24px;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
 
-    .card .contentBox .buy {
-        position: relative;
-        top: 100px;
-        opacity: 0;
-        padding: 10px 30px;
-        margin-top: 15px;
-        color: #000000;
-        text-decoration: none;
-        background: white;
-        border-radius: 30px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: 0.5s;
-    }
+.card .contentBox .buy {
+    position: relative;
+    top: 100px;
+    opacity: 0;
+    padding: 10px 30px;
+    margin-top: 15px;
+    color: #000000;
+    text-decoration: none;
+    background: white;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.5s;
+}
 
-    .card:hover .contentBox .buy {
-        top: 0;
-        opacity: 1;
-    }
+.card:hover .contentBox .buy {
+    top: 0;
+    opacity: 1;
+}
 
-    .mouse {
-        height: 300px;
-        width: auto;
-    }
+.mouse {
+    height: 300px;
+    width: auto;
+}
 
-    .price {
-        text-align: center;
-        margin-top: 1px;
-    }
+.price {
+    text-align: center;
+    margin-top: 1px;
+}
 
-    h3 {
-        text-align: center;
-        margin-bottom: 5px;
-    }
+h3 {
+    text-align: center;
+    margin-bottom: 5px;
+}
 
-    h2 {
-        text-align: center;
+h2 {
+    text-align: center;
 
-    }
+}
 </style>

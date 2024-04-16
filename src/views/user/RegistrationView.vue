@@ -55,7 +55,7 @@
           <input type="Submit" value="Regisztráció" />
         </div>
         <div class="text">
-          <h3>Van már fiókod? <a href="/bejelentkezes">Jelentkezz be!</a></h3>
+          <h3>Van már fiókod? <router-link to="/bejelentkezes">Jelentkezz be!</router-link></h3>
         </div>
       </form>
     </div>

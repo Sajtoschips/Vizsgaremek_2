@@ -10,6 +10,8 @@
       <ul>
         <div v-for="(order, index) in orders" :key="index">
           <h3>Rendelés száma: {{ order.OrderNumber }}</h3>
+          <h3>Rendelés száma: {{ order.QuotedPrice }}</h3>
+          <h3>Rendelés száma: {{ order.OrderNumber }}</h3>
           <ul>
             <li v-for="(item, itemIndex) in order.items" :key="itemIndex">
               Termék száma: {{ item.ProductNumber }}, Ára:

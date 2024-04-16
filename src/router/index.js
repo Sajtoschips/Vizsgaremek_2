@@ -13,23 +13,24 @@ import PageNotFound from "../views/PageNotFound.vue"
 import ProfilView from "../views/user/ProfileView.vue"
 import ResetPasswordView from "../views/user/ResetPasswordView.vue"
 import SendEmail from '../views/user/sendEmail.vue'
-
+import Csapat from '../views/TeamView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    { path: '/', name: "Home", component: HomeView},
-    { path: '/regisztracio', name:"Registration" ,component: RegistrationView},
-    { path: '/bejelentkezes', name: "Login",component: LoginView},
-    { path: '/rolunk', name: "AboutUs",component: AboutView},
-    { path: '/kontakt', name: "Contact",component: ContactView},
-    { path: '/termekek', name: "Termekek", component: ProductsView},
-    { path: '/kosar', name: "Kosar", component: CartView},
-    { path: '/termek/:ProductName', name: "Termek", component: ProductDetailsView},
-    { path: '/:pathName(.*)*', name: "PageNotFound", component: PageNotFound},
-    { path: '/profil', name: "Profil", component: ProfilView},
-    { path: '/jelszohelyreallitas/:token', name: "Elfelejtett jelszo", component: ResetPasswordView},
-    { path: '/sendEmail', name: "Elfelejtett jelszo megadasa", component: SendEmail},
+    { path: '/', name: "Home", component: HomeView },
+    { path: '/regisztracio', name: "Registration", component: RegistrationView },
+    { path: '/bejelentkezes', name: "Login", component: LoginView },
+    { path: '/rolunk', name: "AboutUs", component: AboutView },
+    { path: '/kontakt', name: "Contact", component: ContactView },
+    { path: '/termekek', name: "Termekek", component: ProductsView },
+    { path: '/kosar', name: "Kosar", component: CartView },
+    { path: '/termek/:ProductName', name: "Termek", component: ProductDetailsView },
+    { path: '/:pathName(.*)*', name: "PageNotFound", component: PageNotFound },
+    { path: '/profil', name: "Profil", component: ProfilView },
+    { path: '/jelszohelyreallitas/:token', name: "Elfelejtett jelszo", component: ResetPasswordView },
+    { path: '/sendEmail', name: "Elfelejtett jelszo megadasa", component: SendEmail },
+    { path: '/csapat', name: "Csapat", component: Csapat },
 
   ]
 })
