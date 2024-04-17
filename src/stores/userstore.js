@@ -12,7 +12,6 @@ export const useUserStore = defineStore("userstore", {
       loggedIn: false,
       message: "",
     },
-    orders: [],
   }),
   getters: {},
   actions: {

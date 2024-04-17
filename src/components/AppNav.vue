@@ -96,17 +96,20 @@
           v-model="loginForm.password"
           placeholder="Jelszó"
           :class="{ error: loginError }"
-        />
-        <input type="submit" value="Login" class="login-btn" />
+          />
+        <input type="submit" value="Login" class="login-btn"/>
         <div v-if="loginError" class="error-message text-center">
           <p>Hibás email cím vagy jelszó!</p>
         </div>
       </form>
       <div v-else>
-        <router-link :to="{ name: 'Profil' }" @click="CloseNavElements"
+        <h2 class="text-center mb-2"><router-link :to="{ name: 'Profil' }" @click="CloseNavElements"
           >Profilom</router-link
-        >
-        <button @click="onLogout">Kijelentkezés</button>
+        ></h2>
+        
+        <div>
+          <button class="btn-kijelentkezes" @click="onLogout">Kijelentkezés <i style="font-size: 20px; margin-left: 10px;" class="bi bi-box-arrow-right"></i></button>
+        </div>
       </div>
       <p v-if="!status.loggedIn">
         Elfelejtett jelszó?
@@ -149,11 +152,11 @@ function onLogin() {
     .then(() => {
       logSuccess.value = true;
       toast.success(`Sikeres bejelentkezés`);
+      CloseNavElements();
       setTimeout(() => {
         router.push("/");
-        CloseNavElements();
       }, 2000);
-    })
+  })
     .catch(() => {
       loginError.value = true; // Hiba esetén a loginError értékét true-ra állítjuk
     });
@@ -162,6 +165,7 @@ function onLogin() {
 function onLogout() {
   console.log(status.value);
   logout().then(() => {
+    toast.error(`Kijelentkezett`);
     CloseNavElements();
     router.push("/");
   });
@@ -247,6 +251,16 @@ i{
   display: inline-block;
   text-transform: uppercase;
   clip-path: polygon(100% 0, 93% 50%, 86% 99%, 0% 100%, 7% 47%, 13% 0%);
+}
+
+.btn-kijelentkezes{
+  padding: 0.7rem 1.2rem;
+  background: red;
+  color: var(--bg-color);
+  font-weight: 500;
+  display: inline-block;
+  text-transform: uppercase;
+  border: 0;
 }
 
 .btn:hover {

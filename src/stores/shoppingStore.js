@@ -48,40 +48,42 @@ export const useShoppingStore = defineStore("cart", {
       try {
         // A felhasználó adatainak kiolvasása a sessionStorage-ből
         const user = JSON.parse(sessionStorage.getItem("user"));
-    
+
         // Ellenőrizzük, hogy a felhasználó be van-e jelentkezve
         if (!user || !user.token) {
           // Ha nincs bejelentkezve, irányítsuk át a felhasználót a bejelentkezési oldalra
           router.push("/bejelentkezes"); // Ezt a funkciót neked kell implementálnod
           return; // Kilépünk a függvényből
         }
-    
+
         const userToken = user.token;
         console.log(userToken);
-    
+
         // Elküldjük az autentikációs tokent az Authorization header-ben
         const config = {
           headers: {
             Authorization: `Bearer ${userToken}`,
           },
         };
-    
+
         await console.log(orderData);
-          // Itt adhatsz hozzá további megrendelési adatokat
-    
+        // Itt adhatsz hozzá további megrendelési adatokat
+
         // Elküldjük az adatokat a szerverre az Authorization headerrel
         const response = await Axios.post("/orders", orderData, config);
         console.log("Megrendelés elküldve:", response.data);
-    
+
         // Rendelésszám vagy más azonosító kinyerése a válaszból
         const orderId = response.data.OrderNumber; // Az orderId a válasz objektumban található azonosító lehet
-    
+
         // Sikeres megrendelés esetén töröljük a kosár tartalmát a local storage-ból
         this.cartItems = [];
         saveToStorage("cartItems", this.cartItems);
-    
+
         // Sikeres megrendelés esetén üzenetet jelenítünk meg a felhasználónak
-        toast.success(`A megrendelés (${orderId}) számú azonosítóval sikeresen elküldve!`);
+        toast.success(
+          `A megrendelés (${orderId}) számú azonosítóval sikeresen elküldve!`
+        );
       } catch (error) {
         console.error("Hiba történt a megrendelés során:", error);
         // Hiba esetén üzenetet jelenítünk meg a felhasználónak
@@ -149,12 +151,14 @@ export const useShoppingStore = defineStore("cart", {
           },
         };
 
-        Axios.get("/orderedDetails", config)
+        Axios.get("/OrdersByUser", config)
           .then((resp) => {
             console.log("API válasz:", resp.data);
+            localStorage.setItem("orders", JSON.stringify(resp.data));
             const ordersArray = Array.from(resp.data);
+            console.log("Rendelések tömb:", ordersArray);
             // Az új struktúrájú tömbet mentjük az orders változóba
-            this.orders = ordersArray.map((order) => order[0]);
+            this.orders = ordersArray;
             console.log("Rendelések:", this.orders);
           })
           .catch((error) => {
@@ -164,6 +168,15 @@ export const useShoppingStore = defineStore("cart", {
         console.error("Hiba történt a rendelések lekérése során:", error);
       }
     },
+    // loadOrders() {
+    //   // betöltjük a localStorage-ból
+    //   const savedOrders = localStorage.getItem("orders");
+    //   if (savedOrders) {
+    //     this.orders = JSON.parse(savedOrders);
+    //   } else {
+    //     this.fetchOrders();
+    //   }
+    // },
   },
 });
 function loadFromStorage(key) {
