@@ -53,7 +53,7 @@
 
                         <div class="purchase-info">
                             <button @click="addToCart(SelectedProduct)" type="button" class="btn btn-primary">
-                                Add to Cart <i class="bi bi-cart-plus-fill"></i>
+                                Kosárba  <i class="bi bi-cart-plus-fill"></i>
                             </button>
                         </div>
                     </div>
@@ -111,6 +111,8 @@ img {
     width: 100%;
     display: block;
 }
+
+
 
 .img-display {
     overflow: hidden;
@@ -221,14 +223,17 @@ img {
 
 .purchase-info input,
 .purchase-info .btn {
-    border: 1.5px solid #ddd;
+    background: #000; 
     border-radius: 25px;
     text-align: center;
     padding: 0.45rem 0.8rem;
     outline: 0;
     margin-right: 0.2rem;
     margin-bottom: 1rem;
+    color: #fff; /* Fehér szöveg */
 }
+
+
 
 .purchase-info input {
     width: 60px;
@@ -239,13 +244,9 @@ img {
     color: #fff;
 }
 
-.purchase-info .btn:first-of-type {
-    background: #256eff;
-}
 
-.purchase-info .btn:last-of-type {
-    background: #256eff;
-}
+
+
 
 .purchase-info .btn:hover {
     opacity: 0.9;
@@ -258,6 +259,8 @@ img {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 1.5rem;
+        background: #6aa7ff; 
+
     }
 
     .card-wrapper {
@@ -277,15 +280,6 @@ img {
         padding-top: 0;
     }
 
-    .purchase-info input,
-    .purchase-info .btn {
-        border: 1.5px solid #ddd;
-        border-radius: 25px;
-        text-align: center;
-        padding: 0.45rem 0.8rem;
-        outline: 0;
-        margin-right: 0.2rem;
-        margin-bottom: 1rem;
-    }
+
 }
 </style>

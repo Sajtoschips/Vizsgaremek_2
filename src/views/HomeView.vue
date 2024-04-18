@@ -7,14 +7,18 @@
 </script>
 
 <template>
-  <div class="container" style="padding-top: 5rem; padding-bottom: 8rem;">
-    <!-- Bevezető szöveg -->
-    <div class="row mb-4">
-      <div class="col-lg-8 offset-lg-2 text-center">
-        <h1 class="display-3">Üdvözöllek a GameStrix Hardver Webáruházában!</h1>
-        <p class="lead">Fedezd fel a legjobb ajánlatainkat!</p>
-      </div>
+  <body>
+    
+  
+    <div class="container" style="padding-top: 5rem; padding-bottom: 8rem;">
+  <!-- Bevezető szöveg -->
+  <div class="row mb-4">
+    <div class="col-lg-8 offset-lg-2 text-center">
+      <h1 class="display-3" style="color: #fff; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Üdvözöllek a <span style="color: #007bff;">GameStrix</span> Hardver Webáruházában!</h1>
+      <p class="lead" style="color: #f8f9fa;">Fedezd fel a legjobb ajánlatainkat!</p>
     </div>
+  </div>
+
 
     <div class="row mb-4">
       <div class="col">
@@ -147,7 +151,7 @@
 
   
     <!-- Hírlevél feliratkozó űrlap -->
-    <div class="row mb-4">
+    <div class="row mb-4 " >
       <div class="col-lg-6 offset-lg-3">
         <div class="card">
           <div class="card-body">
@@ -163,20 +167,66 @@
         </div>
       </div>
     </div>
+  </body>
 </template>
 
 
 <style scoped>
-.card {
-  transition: transform 0.3s;
+
+@import url("https://fonts.googleapis.com/css2?family=Istok+Web:wght@400;700&display=swap");
+
+body {
+  min-height: 100vh;
+  background: #6aa7ff;
+}
+.carousel-item img {
+  object-fit: contain; /* Képek arányának megőrzése a carousel-ban */
+  max-height: 100%; /* Képek maximális magassága a carousel-ban */
 }
 
-.card:hover {
-  transform: translateY(-5px);
+.card {
+  background-color: #1f1f1f; /* Kártyák háttere */
+  color: #fff; /* Betűszín */
+  border: none; /* Keret nélkül */
+}
+
+.card-title, .card-text {
+  color: #fff; /* Betűszín a kártyákban */
+}
+
+.card-body {
+  padding: 20px; /* Belső tér a kártya tartalmának */
+}
+
+.card-body a {
+  color: #fff; /* Link színe a kártyákban */
+}
+
+.card-body a:hover {
+  text-decoration: none; /* Link aláhúzás eltüntetése */
+}
+
+.card-body input {
+  color: #495057; /* Input mező szövegszíne */
+}
+
+.card-body input::placeholder {
+  color: #6c757d; /* Placeholder szöveg színe */
+}
+
+.card-body .btn-primary {
+  background-color: #007bff; /* Feliratkozás gomb háttérszíne */
+  border-color: #007bff; /* Gomb keretszíne */
+}
+
+.card-body .btn-primary:hover {
+  background-color: #0056b3; /* Gomb hover háttérszíne */
+  border-color: #0056b3; /* Gomb hover keretszíne */
 }
 
 .carousel-inner img {
-  height: auto;
-  width: 100%;
+  object-fit: contain; /* Képek arányának megőrzése a carousel-ban */
+  max-height: 100%; /* Képek maximális magassága a carousel-ban */
 }
+
 </style>
