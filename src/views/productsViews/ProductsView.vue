@@ -1,13 +1,13 @@
 <template>
+
     <body>
-
-
         <div class="container-fluid" style="padding-top: 5rem; padding-bottom: 8rem">
             <div class="container">
 
 
                 <nav class="navbar navbar-expand-lg bg-dark text-light m-2 rounded-3">
-                    <a @click="selectedCategory = null" style="margin-left: 10px;" class="navbar-brand text-white">Összes termék</a>
+                    <a @click="getPorducts(actualPage)" style="margin-left: 10px;"
+                        class="navbar-brand text-white">Összes termék</a>
                     <button style="margin-right: 10px;" class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -16,13 +16,11 @@
                     <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
                         <ul style="margin-left: 10px;" class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li v-for="cat in categories" :key="cat.CategoryID" class="nav-item">
-                                <a class="nav-link text-white" href="#" @click="selectedCategory = cat">{{ cat.CategoryName }}</a>
+                                <a class="nav-link text-white" @click="selectCategory(cat.CategoryID)">{{
+                                    cat.CategoryName }}</a>
                             </li>
                         </ul>
-                        <form class="d-flex m-2 justify-content-center " role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form>
+
                     </div>
                 </nav>
             </div>
@@ -31,8 +29,9 @@
 
             <!-- Products -->
 
-            <div v-if="selectedCategory" class="row justify-content-center">
-                <div class="col-3 card m-1 mb-5 card-deck" v-for="product in filteredProducts" :key="product.ProductID">
+
+            <div class="row justify-content-center">
+                <div class="col-3 card m-1 mb-5 card-deck" v-for="product in products" :key="product.ProductID">
                     <div class="imgBox">
                         <img @click="goToProductPage(product.ProductName)" :src="product.Image" class="mouse">
                     </div>
@@ -43,18 +42,14 @@
                     </div>
                 </div>
             </div>
-            <div v-else class="row justify-content-center">
-                <div class="col-3 card m-1 mb-5 card-deck" v-for="product in products" :key="product.ProductID">
-                    <div class="imgBox">
-                        <img @click="goToProductPage(product.ProductName)" :src="product.Image" class="mouse">
-                    </div>
-                    <div class="contentBox">
-                        <h3>{{ product.ProductName }}</h3>
-                            <h2 class="price">{{ product.RetailPrice }} Ft</h2>
-                        <a href="#" @click="addToCart(product)" class="buy">Vásárlás</a>
-                    </div>
-                </div>
+            <div class="d-flex justify-content-center align-items-center" v-if="isPaged">
+                <button class="btn btn-light p-2 " @click="getPorducts(actualPage--)"
+                    v-if="actualPage > 1">Previous</button>
+                <p class="fs-4 mx-4 bg-light rounded-circle px-2 ">{{ actualPage }}</p>
+                <button class="btn btn-light p-2 " @click="getPorducts(actualPage++)"
+                    v-if="actualPage < lastPage">Next</button>
             </div>
+
         </div>
     </body>
 </template>
@@ -77,38 +72,50 @@ import {
 const router = useRouter();
 const shoppingStore = useShoppingStore();
 const selectedCategory = ref(null);
+const categories = ref([]);
+const products = ref([]);
+const actualPage = ref(1);
+const lastPage = ref(1)
+const isPaged = ref(false)
+
+
 
 onMounted(() => {
     shoppingStore.fetchProducts();
+    useProductData();
 });
 
-const {
-    categories,
-    products
-} = useProductData();
-const filteredProducts = computed(() => {
-    if (!selectedCategory.value) {
-        return products.value;
-    }
-    return products.value.filter((p) => p.CategoryID === selectedCategory.value.CategoryID);
-});
+
+
+
+
+
 productservices.getCategoryById()
 function useProductData() {
-    const categories = ref([]);
-    const products = ref([]);
 
     productservices.getAllCategories().then((cats) => {
         categories.value = cats;
     });
 
-    productservices.getAllProduct().then((prods) => {
-        products.value = prods;
-    });
+    getPorducts(actualPage.value)
 
-    return {
-        categories,
-        products
-    };
+}
+
+function getPorducts(page) {
+    isPaged.value = true
+    console.log(actualPage.value);
+    productservices.getProductsPaged(actualPage.value).then((resp) => {
+        products.value = resp.data;
+        lastPage.value = Math.ceil(resp.total / 10);
+
+    });
+}
+function selectCategory(id) {
+    productservices.getProductByCategoryId(id).then((resp) => {
+        isPaged.value = false
+        actualPage.value = 1;
+        products.value = resp;
+    })
 }
 
 const goToProductPage = (ProductName) => {
@@ -299,5 +306,5 @@ h3 {
 h2 {
     text-align: center;
 
-    }
+}
 </style>

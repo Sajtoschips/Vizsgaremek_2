@@ -10,6 +10,15 @@ export default {
         return Promise.reject(err.response);
       });
   },
+  getProductsPaged(page) {
+    return Axios.get("/productsPaged?page=" + page)
+      .then((resp) => {
+        return resp.data;
+      })
+      .catch((err) => {
+        return Promise.reject(err.response);
+      });
+  },
   getAllCategories() {
     return Axios.get("/categories")
       .then((resp) => {
@@ -32,6 +41,16 @@ export default {
         return Promise.reject(err.response);
       });
   },
+getProductByCategoryId(id) {
+  return Axios.get("/products/"+id)
+      .then((resp) => {
+        return resp.data;
+      })
+      .catch((err) => {
+        return Promise.reject(err.response);
+      });
+}
+
 
   // insertBlog(data,token){
   //     return Axios.post('/blog',data,{headers: {"Authorization": "Bearer " + token}})
@@ -41,5 +60,6 @@ export default {
   //         .catch(err =>{
   //             return Promise.reject(err.response);
   //         })
+  //https://bgs.jedlik.eu/gamestrix/gamestrix/api/productsPaged?page=2
   // }
 };

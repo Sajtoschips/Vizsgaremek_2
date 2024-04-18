@@ -1,8 +1,8 @@
 <template>
   <body>
-  <div class="container pt-5">
-    <div class="row mt-5">
-      <div class="card col h-auto ">
+  <div class="container p-5">
+    <div class="mt-5 row justify-content-around ">
+      <div class="card mb-1 col-12 col-md-3 h-auto d-flex justify-content-center">
         <div class="imgBox">
           <img src="src/assets/img/Discord.png"
             alt="" class="mouse">
@@ -14,7 +14,7 @@
         </div>
       </div>
       <!-- Facebook kártya -->
-      <div class="card col h-auto">
+      <div class="card mb-1 col-12 col-md-3 h-auto d-flex justify-content-center">
         <div class="imgBox">
           <img src="src/assets/img/facebook.png"
             alt="" class="mouse">
@@ -26,7 +26,7 @@
         </div>
       </div>
         <!-- Email kártya -->
-      <div class="card col h-auto">
+      <div class="card mb-1 col-12 col-md-3 h-auto d-flex justify-content-center">
         <div class="imgBox">
           <img src="src/assets/img/gmail.png"
             alt="" class="mouse">
@@ -38,8 +38,8 @@
         </div>
       </div>
       <!-- Telefonszám kártya -->
-       <div class="card col h-auto">
-        <div class="imgBox">
+       <div class="card mb-1 col-12 col-md-3 h-auto d-flex justify-content-center">
+        <div class="imgBox" >
           <img src="src/assets/img/phone.png"
             alt="" class="mouse">
         </div>
@@ -50,13 +50,8 @@
         </div>
       </div>
     </div>
-    </div>
-    
-     
+  </div>
       <!-- Telefonszám kártya -->
-      
-
-  
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
@@ -88,12 +83,6 @@ body {
 }
 
 .card {
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 30px;
-  position: relative;
-  width: 320px;
-  height: 480px;
   background: #191919;
   border-radius: 20px;
   overflow: hidden;
@@ -116,7 +105,7 @@ body {
 }
 
 .card::after {
-  content: "CORSAIR";
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -135,18 +124,6 @@ body {
   z-index: 1;
 }
 
-/*
-.card .imgBox img {
-    max-width: 100%;
-    
-    transition: .5s;
-}
-
-.card:hover .imgBox img {
-    max-width: 50%;
-      
-}
-*/
 .card .contentBox {
   position: relative;
   padding: 20px;

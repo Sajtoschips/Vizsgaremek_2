@@ -130,9 +130,13 @@ const addToCart = (product) => {
                   <img @click="goToProductPage(product.ProductName)" :src="product.Image" class="mouse">
                   <div class="card-body">
                     <h5 class="card-title">{{ product.ProductName }}</h5>
-                    <p class="card-text">Leírás röviden. <br> Régi ár: <s>2000 Ft</s> <br> Új ár: {{ product.RetailPrice
-                      }} Ft</p>
-                    <a href="#" class="btn btn-primary">Részletek</a>
+                    <div class="card-text">
+                      <p>
+                        Régi ár: <s>{{ product.RetailPrice * 1.2 }} Ft</s>
+                      </p>
+                      <p> Új ár: {{ product.RetailPrice }} Ft</p>
+                      <a href="#" class="btn btn-primary">Részletek</a>
+                    </div>
                   </div>
                 </div>
               </div>
