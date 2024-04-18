@@ -1,55 +1,62 @@
 <template>
-  <div class="container mt-5 pt-5">
-    <h1 class="text-center mb-4">Kapcsolat</h1>
-    <div class="row">
-      <!-- Discord kártya -->
-      <div class="col-md-3 mb-4" style="border:2px solid black;">
-        <div class="card text-center">
-          <img src="../assets/img/Discord2.png" class="card-img-top img-fluid" alt="Discord">
-          <div class="card-body">
-            <h5 class="card-title">Discord</h5>
-            <p class="card-text">Csatlakozz hozzánk a Discord szerverünkön!</p>
-            <a href="https://discord.gg/NR4awvcDPs" target="_blank" class="btn btn-primary">Csatlakozás</a>
-          </div>
+  <body>
+  <div class="container pt-5">
+    <div class="row mt-5">
+      <div class="card col h-auto ">
+        <div class="imgBox">
+          <img src="https://www.freepnglogos.com/uploads/discord-logo-png/discord-logo-logodownload-download-logotipos-1.png"
+            alt="" class="mouse">
+        </div>
+        <div class="contentBox">
+          <h3>Discord</h3>
+          <h5 class="price">Exklúzív akciókról és nyereményjátékok</h5>
+          <a href="https://discord.gg/NR4awvcDPs" class="buy">Csatlakozás</a>
         </div>
       </div>
       <!-- Facebook kártya -->
-      <div class="col-md-3 mb-4" style="border:2px solid black;">
-        <div class="card text-center">
-          <img src="../assets/img/facebook.png" class="card-img-top img-fluid" alt="Facebook">
-          <div class="card-body">
-            <h5 class="card-title">Facebook</h5>
-            <p class="card-text">Kövess minket a Facebookon!</p>
-            <a href="https://www.facebook.com/people/GameStrix-Web%C3%A1ruh%C3%A1z/61557614525724/" target="_blank"
-              class="btn btn-primary">Követés</a>
-          </div>
+      <div class="card col h-auto">
+        <div class="imgBox">
+          <img src="https://1000logos.net/wp-content/uploads/2017/02/Facebook-Logosu.png"
+            alt="" class="mouse">
+        </div>
+        <div class="contentBox">
+          <h3>Facebook</h3>
+          <h5 class="price">Ha bármi kérdésed lenne buildekkel kapcsolatban</h5>
+          <a href="https://www.facebook.com/people/GameStrix-Web%C3%A1ruh%C3%A1z/61557614525724/" target="_blank" class="buy">Csatlakozás</a>
         </div>
       </div>
-      <!-- Email kártya -->
-      <div class="col-md-3 mb-4" style="border:2px solid black;">
-        <div class="card text-center">
-          <img src="../assets/img/gmail.png" class="card-img-top img-fluid" alt="Email">
-          <div class="card-body">
-            <h5 class="card-title">Email</h5>
-            <p class="card-text">Írj nekünk az alábbi címre: info.gamestrix@gmail.com</p>
-            <a href="mailto:info.gamestrix@gmail.com" class="btn btn-primary">Írás</a>
-          </div>
+        <!-- Email kártya -->
+      <div class="card col h-auto">
+        <div class="imgBox">
+          <img src="https://static.vecteezy.com/system/resources/previews/016/716/465/original/gmail-icon-free-png.png"
+            alt="" class="mouse">
+        </div>
+        <div class="contentBox">
+          <h3>Gmail</h3>
+          <h5 class="price">Profi support bármivel kapcsolatban</h5>
+          <a href="mailto:info.gamestrix@gmail.com" class="buy">Csatlakozás</a>
         </div>
       </div>
       <!-- Telefonszám kártya -->
-      <div class="col-md-3 mb-4" style="border:2px solid black;">
-        <div class="card text-center">
-          <img src="../assets/img/phone.png" class="card-img-top img-fluid" alt="Telefonszám">
-          <div class="card-body">
-            <h5 class="card-title">Telefonszám</h5>
-            <p class="card-text">Hívj minket: +36 1 234 5678</p>
-            <a href="tel:+3612345678" class="btn btn-primary">Hívás</a>
-          </div>
+       <div class="card col h-auto">
+        <div class="imgBox">
+          <img src="https://pngimg.com/d/phone_PNG48921.png"
+            alt="" class="mouse">
+        </div>
+        <div class="contentBox">
+          <h3>Telefonszám</h3>
+          <h5 class="price">Gyors válasz hétfőtöl péntekig 16:00-ig</h5>
+          <a href="tel:+3612345678" class="buy">Csatlakozás</a>
         </div>
       </div>
     </div>
+    </div>
+    
+     
+      <!-- Telefonszám kártya -->
+      
 
-  </div>
+  
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
@@ -63,24 +70,137 @@
     </div>
   </div>
 
-
+</body>
 </template>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Istok+Web:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Istok Web", sans-serif;
+}
+
+body {
+ min-height: 100vh;
+    background: #6aa7ff;
+}
+
 .card {
-  transition: transform 0.3s;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 30px;
+  position: relative;
+  width: 320px;
+  height: 480px;
+  background: #191919;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  width: 100%;
   height: 100%;
+  background: #4070f4;
+  transform: skewY(345deg);
+  transition: 0.5s;
 }
 
-
-
-.card:hover {
-  transform: scale(1.05);
+.card:hover::before {
+  top: -70%;
+  transform: skewY(390deg);
 }
 
-.card-img-top {
-  height: 200px;
-  /* Állítsd be a megfelelő méretet */
-  object-fit: cover;
+.card::after {
+  content: "CORSAIR";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-weight: 600;
+  font-size: 6em;
+  color: rgba(0, 0, 0, 0.1);
+}
+
+.card .imgBox {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  z-index: 1;
+}
+
+/*
+.card .imgBox img {
+    max-width: 100%;
+    
+    transition: .5s;
+}
+
+.card:hover .imgBox img {
+    max-width: 50%;
+      
+}
+*/
+.card .contentBox {
+  position: relative;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.card .contentBox h3 {
+  font-size: 18px;
+  color: white;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card .contentBox .price {
+  font-size: 24px;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.card .contentBox .buy {
+  position: relative;
+  top: 100px;
+  opacity: 0;
+  padding: 10px 30px;
+  margin-top: 15px;
+  color: #000000;
+  text-decoration: none;
+  background: white;
+  border-radius: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: 0.5s;
+}
+
+.card:hover .contentBox .buy {
+  top: 0;
+  opacity: 1;
+}
+
+.mouse {
+  height: 300px;
+  width: auto;
+}
+h5{
+  justify-content: center;
+  text-align: center;
+}
+h3{
+  margin-bottom: 2px;
 }
 </style>
