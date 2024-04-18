@@ -56,7 +56,7 @@
         <p>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2686.1059420735237!2d17.627755977293848!3d47.682362471197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476bbffacc7d0121%3A0x3c21b0233aee52f!2sGy%C5%91ri%20Szakk%C3%A9pz%C3%A9si%20Centrum%20Jedlik%20%C3%81nyos%20G%C3%A9pipari%20%C3%A9s%20Informatikai%20Technikum%20%C3%A9s%20Koll%C3%A9gium!5e0!3m2!1shu!2shu!4v1713250939631!5m2!1shu!2shu"
-            width="800" height="600" style="border:2px solid black;" allowFullScreen loading="lazy"
+            width="100%" height="400" style="border:2px solid black;" allowFullScreen loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"></iframe>
         </p>
       </div>

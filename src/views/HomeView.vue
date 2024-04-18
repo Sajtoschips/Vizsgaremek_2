@@ -16,7 +16,6 @@
       </div>
     </div>
 
-
     <div class="row mb-4">
       <div class="col">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">

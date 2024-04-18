@@ -92,7 +92,7 @@ const filteredProducts = computed(() => {
     }
     return products.value.filter((p) => p.CategoryID === selectedCategory.value.CategoryID);
 });
-
+productservices.getCategoryById()
 function useProductData() {
     const categories = ref([]);
     const products = ref([]);
