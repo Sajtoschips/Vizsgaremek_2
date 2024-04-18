@@ -4,7 +4,7 @@
     <div class="row mt-5">
       <div class="card col h-auto ">
         <div class="imgBox">
-          <img src="https://www.freepnglogos.com/uploads/discord-logo-png/discord-logo-logodownload-download-logotipos-1.png"
+          <img src="src/assets/img/Discord.png"
             alt="" class="mouse">
         </div>
         <div class="contentBox">
@@ -16,37 +16,37 @@
       <!-- Facebook kártya -->
       <div class="card col h-auto">
         <div class="imgBox">
-          <img src="https://1000logos.net/wp-content/uploads/2017/02/Facebook-Logosu.png"
+          <img src="src/assets/img/facebook.png"
             alt="" class="mouse">
         </div>
         <div class="contentBox">
           <h3>Facebook</h3>
           <h5 class="price">Ha bármi kérdésed lenne buildekkel kapcsolatban</h5>
-          <a href="https://www.facebook.com/people/GameStrix-Web%C3%A1ruh%C3%A1z/61557614525724/" target="_blank" class="buy">Csatlakozás</a>
+          <a href="https://www.facebook.com/people/GameStrix-Web%C3%A1ruh%C3%A1z/61557614525724/" target="_blank" class="buy">Felkeresés</a>
         </div>
       </div>
         <!-- Email kártya -->
       <div class="card col h-auto">
         <div class="imgBox">
-          <img src="https://static.vecteezy.com/system/resources/previews/016/716/465/original/gmail-icon-free-png.png"
+          <img src="src/assets/img/gmail.png"
             alt="" class="mouse">
         </div>
         <div class="contentBox">
           <h3>Gmail</h3>
           <h5 class="price">Profi support bármivel kapcsolatban</h5>
-          <a href="mailto:info.gamestrix@gmail.com" class="buy">Csatlakozás</a>
+          <a href="mailto:info.gamestrix@gmail.com" class="buy">Írás</a>
         </div>
       </div>
       <!-- Telefonszám kártya -->
        <div class="card col h-auto">
         <div class="imgBox">
-          <img src="https://pngimg.com/d/phone_PNG48921.png"
+          <img src="src/assets/img/phone.png"
             alt="" class="mouse">
         </div>
         <div class="contentBox">
           <h3>Telefonszám</h3>
           <h5 class="price">Gyors válasz hétfőtöl péntekig 16:00-ig</h5>
-          <a href="tel:+3612345678" class="buy">Csatlakozás</a>
+          <a href="tel:+3612345678" class="buy">Hívás</a>
         </div>
       </div>
     </div>
