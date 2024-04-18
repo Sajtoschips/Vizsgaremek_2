@@ -66,7 +66,9 @@
             </span>
             <i @click="data.decrementQ(item)" class="bi bi-dash-circle"></i>
           </div>
+          <div>
             <i @click="data.removeFromCart(item)" class="bx bxs-trash-alt"></i>
+          </div>
         </div>
         <br />
         <h2>Összesen: {{ teljesAr }} Ft</h2>
