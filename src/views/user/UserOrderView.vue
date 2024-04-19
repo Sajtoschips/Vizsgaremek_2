@@ -1,10 +1,5 @@
 <template>
   <div class="container" style="padding-top: 5rem; padding-bottom: 8rem">
-    <h1>{{ user.name }}</h1>
-    <h1>{{ user.phone_number }}</h1>
-    <h1>{{ user.adress }}</h1>
-    <h1>{{ user.email }}</h1>
-
     <div v-if="orders.length > 0">
       <h2>Rendeléseim:</h2>
       <ul>

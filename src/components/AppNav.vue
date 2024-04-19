@@ -105,10 +105,17 @@
         </div>
       </form>
       <div v-else>
+        <h2 class="text-center mb-2"><router-link :to="{ name: 'Rendelesek' }" @click="CloseNavElements"
+          >Rendelések</router-link
+        ></h2>
+
         <h2 class="text-center mb-2"><router-link :to="{ name: 'Profil' }" @click="CloseNavElements"
           >Profilom</router-link
         ></h2>
         
+        <h2 v-show="user.role === 1" class="text-center mb-2"><router-link :to="{ name: 'Admin' }" @click="CloseNavElements"
+          >Admin</router-link
+        ></h2>
         <div>
           <button class="btn-kijelentkezes" @click="onLogout">Kijelentkezés <i style="font-size: 20px; margin-left: 10px;" class="bi bi-box-arrow-right"></i></button>
         </div>

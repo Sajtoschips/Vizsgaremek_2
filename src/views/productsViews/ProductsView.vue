@@ -11,7 +11,7 @@
                     <button style="margin-right: 10px;" class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                        <i class="bi bi-list" style="color: white; font-size: 25px;"></i>
                     </button>
                     <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
                         <ul style="margin-left: 10px;" class="navbar-nav me-auto mb-2 mb-lg-0">
