@@ -38,7 +38,7 @@
                     <div class="contentBox">
                         <h3>{{ product.ProductName }}</h3>
                         <h2 class="price">{{ product.RetailPrice }} Ft</h2>
-                        <a href="#" @click="addToCart(product)" class="buy">Vásárlás</a>
+                        <a  @click="addToCart(product)" class="buy">Vásárlás</a>
                     </div>
                 </div>
             </div>
@@ -107,7 +107,10 @@ function getPorducts(page) {
     productservices.getProductsPaged(actualPage.value).then((resp) => {
         products.value = resp.data;
         lastPage.value = Math.ceil(resp.total / 10);
-
+        window.scrollTo({
+            top:0,
+            behavior: "smooth"
+        })
     });
 }
 function selectCategory(id) {
