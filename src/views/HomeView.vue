@@ -86,6 +86,7 @@ const addToCart = (product) => {
 
 
     <div class="container" style="padding-top: 5rem; padding-bottom: 8rem;">
+
       <!-- Bevezető szöveg -->
       <div class="row mb-4">
         <div class="col-lg-8 offset-lg-2 text-center">
@@ -134,8 +135,8 @@ const addToCart = (product) => {
 
       <div class="row mb-4 justify-content-center">
         <div class="col-md-8">
-          <h2 class="mb-3 text-center">Akciós termékek</h2>
-          <div class="row row-cols-1 row-cols-md-3 g-4">
+          <h2 class="mb-3 text-center" style="font-size: 2.5rem; font-weight: bold; color: #fff;">Akciós termékek</h2>
+          <div class="row row-cols-1 row-cols-md-3 g-5  ">
             <div v-for="product in products" :key="product.ProductID" class="col">
               <div class="card h-100 mx-auto" style="width: 18rem;">
                 <img @click="goToProductPage(product.ProductName)" :src="product.Image" class="card-img-top">
