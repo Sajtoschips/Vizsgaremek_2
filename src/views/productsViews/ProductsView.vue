@@ -31,7 +31,7 @@
 
 
             <div class="row justify-content-center">
-                <div class="col-3 card " v-for="product in products" :key="product.ProductID">
+                <div class="col-3 card m-1 mb-5 card-deck" v-for="product in products" :key="product.ProductID">
                     <div class="imgBox">
                         <img @click="goToProductPage(product.ProductName)" :src="product.Image" class="mouse">
                     </div>

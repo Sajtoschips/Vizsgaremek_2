@@ -50,6 +50,7 @@ function getPorducts(page) {
   console.log(actualPage.value);
   productservices.getProductsPaged(actualPage.value).then((resp) => {
     products.value = resp.data;
+    products.value.pop()
     lastPage.value = Math.ceil(resp.total / 10);
     window.scrollTo({
       top: 0,
@@ -131,31 +132,27 @@ const addToCart = (product) => {
 
 
 
-      <div class="row mb-4">
-        <div class="col">
-          <h2 class="mb-3">Akciós termékek</h2>
+      <div class="row mb-4 justify-content-center">
+        <div class="col-md-8">
+          <h2 class="mb-3 text-center">Akciós termékek</h2>
           <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div v-for="product in products" :key="product.ProductID">
-              <div class="col">
-                <div class="card h-100">
-                  <img @click="goToProductPage(product.ProductName)" :src="product.Image" class="mouse">
-                  <div class="card-body">
-                    <h5 class="card-title">{{ product.ProductName }}</h5>
-                    <div class="card-text">
-                      <p>
-                        Régi ár: <s>{{ product.RetailPrice * 1.2 }} Ft</s>
-                      </p>
-                      <p> Új ár: {{ product.RetailPrice }} Ft</p>
-                      <a  @click="addToCart(product)" class="buy btn btn-primary">Kosárba</a>
-                    </div>
+            <div v-for="product in products" :key="product.ProductID" class="col">
+              <div class="card h-100 mx-auto" style="width: 18rem;">
+                <img @click="goToProductPage(product.ProductName)" :src="product.Image" class="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title text-center">{{ product.ProductName }}</h5>
+                  <div class="card-text text-center">
+                    <p>Régi ár: <s>{{ product.RetailPrice * 1.2 }} Ft</s></p>
+                    <p>Új ár: {{ product.RetailPrice }} Ft</p>
+                    <a @click="addToCart(product)" class="buy btn btn-primary">Kosárba</a>
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
+
 
 
     </div>
@@ -243,7 +240,7 @@ body {
   /* Képek maximális magassága a carousel-ban */
 }
 
-*{
+* {
   margin: 0;
   padding: 0;
   font-family: "Istok Web", sans-serif;
@@ -273,7 +270,7 @@ a {
   top: -50%;
   width: 100%;
   height: 100%;
- 
+
   transform: skewY(345deg);
   transition: 0.5s;
 }
