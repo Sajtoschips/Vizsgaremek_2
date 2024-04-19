@@ -16,38 +16,53 @@ import {
 const router = useRouter();
 const shoppingStore = useShoppingStore();
 const selectedCategory = ref(null);
+const categories = ref([]);
+const products = ref([]);
+const actualPage = ref(1);
+const lastPage = ref(1)
+const isPaged = ref(false)
+
+
 
 onMounted(() => {
   shoppingStore.fetchProducts();
+  useProductData();
 });
 
-const {
-  categories,
-  products
-} = useProductData();
-const filteredProducts = computed(() => {
-  if (!selectedCategory.value) {
-    return products.value;
-  }
-  return products.value.filter((p) => p.CategoryID === selectedCategory.value.CategoryID);
-});
+
+
+
+
+
 productservices.getCategoryById()
 function useProductData() {
-  const categories = ref([]);
-  const products = ref([]);
 
   productservices.getAllCategories().then((cats) => {
     categories.value = cats;
   });
 
-  productservices.getAllProduct().then((prods) => {
-    products.value = prods;
-  });
+  getPorducts(actualPage.value)
 
-  return {
-    categories,
-    products
-  };
+}
+
+function getPorducts(page) {
+  isPaged.value = true
+  console.log(actualPage.value);
+  productservices.getProductsPaged(actualPage.value).then((resp) => {
+    products.value = resp.data;
+    lastPage.value = Math.ceil(resp.total / 10);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    })
+  });
+}
+function selectCategory(id) {
+  productservices.getProductByCategoryId(id).then((resp) => {
+    isPaged.value = false
+    actualPage.value = 1;
+    products.value = resp;
+  })
 }
 
 const goToProductPage = (ProductName) => {
@@ -62,10 +77,6 @@ const goToProductPage = (ProductName) => {
 const addToCart = (product) => {
   shoppingStore.addToCart(product);
 };
-
-
-
-
 </script>
 
 <template>
@@ -124,7 +135,7 @@ const addToCart = (product) => {
         <div class="col">
           <h2 class="mb-3">Akciós termékek</h2>
           <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div v-for="product in filteredProducts" :key="product.ProductID">
+            <div v-for="product in products" :key="product.ProductID">
               <div class="col">
                 <div class="card h-100">
                   <img @click="goToProductPage(product.ProductName)" :src="product.Image" class="mouse">
@@ -135,7 +146,7 @@ const addToCart = (product) => {
                         Régi ár: <s>{{ product.RetailPrice * 1.2 }} Ft</s>
                       </p>
                       <p> Új ár: {{ product.RetailPrice }} Ft</p>
-                      <a href="#" class="btn btn-primary">Részletek</a>
+                      <a  @click="addToCart(product)" class="buy btn btn-primary">Kosárba</a>
                     </div>
                   </div>
                 </div>
@@ -150,23 +161,8 @@ const addToCart = (product) => {
     </div>
 
 
-    <!-- Hírlevél feliratkozó űrlap -->
-    <div class="row mb-4 ">
-      <div class="col-lg-6 offset-lg-3">
-        <div class="card">
-          <div class="card-body">
-            <h3 class="card-title text-center mb-4">Iratkozz fel hírlevelünkre!</h3>
-            <form>
-              <div class="mb-3">
-                <input type="email" class="form-control" id="emailInput" placeholder="Email cím">
-              </div>
-              <button type="submit" class="btn btn-primary btn-block">Feliratkozás</button>
 
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+
   </body>
 </template>
 
@@ -245,5 +241,141 @@ body {
   /* Képek arányának megőrzése a carousel-ban */
   max-height: 100%;
   /* Képek maximális magassága a carousel-ban */
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  font-family: "Istok Web", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: #6aa7ff;
+}
+
+a {
+  cursor: pointer;
+}
+
+.card {
+  position: relative;
+  width: 320px;
+  height: 480px;
+  background: black;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  width: 100%;
+  height: 100%;
+ 
+  transform: skewY(345deg);
+  transition: 0.5s;
+}
+
+.card:hover::before {
+  top: -70%;
+  transform: skewY(390deg);
+}
+
+.card::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-weight: 600;
+  font-size: 6em;
+  color: rgba(0, 0, 0, 0.1);
+}
+
+.card .imgBox {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding-top: 20px; */
+  z-index: 1;
+}
+
+/*
+.card .imgBox img {
+    max-width: 100%;
+
+    transition: .5s;
+}
+
+.card:hover .imgBox img {
+    max-width: 50%;
+
+}
+*/
+.card .contentBox {
+  position: relative;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.card .contentBox h3 {
+  font-size: 18px;
+  color: white;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card .contentBox .price {
+  font-size: 24px;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.card .contentBox .buy {
+  position: relative;
+  top: 100px;
+  opacity: 0;
+  padding: 10px 30px;
+  margin-top: 15px;
+  color: #000000;
+  text-decoration: none;
+  background: white;
+  border-radius: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: 0.5s;
+}
+
+.card:hover .contentBox .buy {
+  top: 0;
+  opacity: 1;
+}
+
+.mouse {
+  height: 300px;
+  width: auto;
+}
+
+.price {
+  text-align: center;
+  margin-top: 1px;
+}
+
+h3 {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+h2 {
+  text-align: center;
+
 }
 </style>
