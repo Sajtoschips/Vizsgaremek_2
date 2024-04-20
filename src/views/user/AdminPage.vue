@@ -53,6 +53,8 @@ import productservices from "../../services/productservices";
 import {
     useRouter
 } from "vue-router";
+import { useUserStore } from "../../stores/userstore";
+
 
 const shoppingStore = useShoppingStore();
 
@@ -60,6 +62,7 @@ const products = ref([]);
 const actualPage = ref(1);
 const lastPage = ref(1)
 const isPaged = ref(false)
+const userStore = useUserStore();
 
 
 onMounted(() => {
@@ -84,6 +87,12 @@ function getPorducts(page) {
         products.value = resp.data;
         lastPage.value = Math.ceil(resp.total / 10);
 
+    });
+}
+
+function deleteProduct(id){
+    productservices.deleteProductByAdmin(id, userStore.user.token).then((resp) => {
+        console.log(resp);
     });
 }
 

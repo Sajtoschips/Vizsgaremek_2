@@ -49,7 +49,19 @@ getProductByCategoryId(id) {
       .catch((err) => {
         return Promise.reject(err.response);
       });
+},
+
+deleteProductByAdmin(id, token) {
+  return Axios.delete("/deleteProcts/"+id ,{headers: {"Authorization": "Bearer " + token}})
+  
+  .then((resp) => {
+      return resp.data;
+    })
+     .catch((err) => {
+        return Promise.reject(err.response);
+      });
 }
+
 
 
   // insertBlog(data,token){

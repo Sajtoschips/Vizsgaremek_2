@@ -4,7 +4,7 @@
     <div class="mt-5 row justify-content-around ">
       <div class="card mb-1 col-12 col-md-3 h-auto d-flex justify-content-center">
         <div class="imgBox">
-          <img src="src/assets/img/Discord.png"
+          <img src="https://bgs.jedlik.eu/gamestrix/images/discord.png"
             alt="" class="mouse">
         </div>
         <div class="contentBox">
@@ -16,7 +16,7 @@
       <!-- Facebook kártya -->
       <div class="card mb-1 col-12 col-md-3 h-auto d-flex justify-content-center">
         <div class="imgBox">
-          <img src="src/assets/img/facebook.png"
+          <img src="https://bgs.jedlik.eu/gamestrix/images/facebook.png"
             alt="" class="mouse">
         </div>
         <div class="contentBox">
@@ -28,7 +28,7 @@
         <!-- Email kártya -->
       <div class="card mb-1 col-12 col-md-3 h-auto d-flex justify-content-center">
         <div class="imgBox">
-          <img src="src/assets/img/gmail.png"
+          <img src="https://bgs.jedlik.eu/gamestrix/images/gmail.png"
             alt="" class="mouse">
         </div>
         <div class="contentBox">
@@ -40,7 +40,7 @@
       <!-- Telefonszám kártya -->
        <div class="card mb-1 col-12 col-md-3 h-auto d-flex justify-content-center">
         <div class="imgBox" >
-          <img src="src/assets/img/phone.png"
+          <img src="https://bgs.jedlik.eu/gamestrix/images/phone.png"
             alt="" class="mouse">
         </div>
         <div class="contentBox">
