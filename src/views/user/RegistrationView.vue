@@ -119,7 +119,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
+  background: #4070f4;
 }
 
 .wrapper {

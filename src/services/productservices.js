@@ -41,37 +41,73 @@ export default {
         return Promise.reject(err.response);
       });
   },
-getProductByCategoryId(id) {
-  return Axios.get("/products/"+id)
+  getProductByCategoryId(id) {
+    return Axios.get("/products/" + id)
       .then((resp) => {
         return resp.data;
       })
       .catch((err) => {
         return Promise.reject(err.response);
       });
-},
+  },
 
-deleteProductByAdmin(id, token) {
-  return Axios.delete("/deleteProcts/"+id ,{headers: {"Authorization": "Bearer " + token}})
-  
-  .then((resp) => {
-      return resp.data;
+  deleteProductByAdmin(id, token) {
+    return Axios.delete("/deleteProcts/" + id, {
+      headers: { Authorization: "Bearer " + token },
     })
-     .catch((err) => {
+
+      .then((resp) => {
+        return resp.data;
+      })
+      .catch((err) => {
         return Promise.reject(err.response);
       });
-}
+  },
 
+  GetOrder(token) {
+    return Axios.get("/OrdersByUser", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then((resp) => {
+        return resp.data;
+      })
+      .catch((err) => {
+        return Promise.reject(err.response);
+      });
+  },
 
+  getProductById(id) {
+    return Axios.get("/product/" + id)
+      .then((resp) => {
+        return resp.data;
+      })
+      .catch((err) => {
+        return Promise.reject(err.response);
+      });
+  },
 
-  // insertBlog(data,token){
-  //     return Axios.post('/blog',data,{headers: {"Authorization": "Bearer " + token}})
-  //         .then(resp =>{
-  //             return resp.data;
-  //         })
-  //         .catch(err =>{
-  //             return Promise.reject(err.response);
-  //         })
-  //https://bgs.jedlik.eu/gamestrix/gamestrix/api/productsPaged?page=2
-  // }
+  ModifyProductByAdmin(id, data, token) {
+    return Axios.put("/updateProducts/" + id, data, {
+      headers: { Authorization: "Bearer " + token },
+    })
+      .then((resp) => {
+        return resp.data;
+      })
+      .catch((err) => {
+        return Promise.reject(err.response);
+      });
+  },
+  MakeProductByAdmin(data, token) {
+    return Axios.post("/makeProducts", data, {
+      headers: { Authorization: "Bearer " + token },
+    })
+      .then((resp) => {
+        return resp.data;
+      })
+      .catch((err) => {
+        return Promise.reject(err.response);
+      });
+  },
 };

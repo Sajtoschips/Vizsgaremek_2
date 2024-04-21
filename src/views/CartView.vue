@@ -34,7 +34,7 @@
               />
               <div class="content">
                 <h3>{{ item.ProductName }}</h3>
-                <h4>{{ item.RetailPrice }} Ft</h4>
+                <h4>{{ formatCurrency(item.RetailPrice) }} Ft</h4>
                 <p @click="data.removeFromCart(item)" class="btn-area">
                   <i aria-hidden="true" class="fa fa-trash"></i>
                   <span class="btn2">Törlés</span>
@@ -49,7 +49,7 @@
           </div>
           <div class="right-bar">
             <p>
-              <span>Termék(ek) ára: </span> <span>{{ teljesAr }} Ft</span>
+              <span>Termék(ek) ára: </span> <span>{{ formatCurrency(teljesAr) }} Ft</span>
             </p>
             <hr />
             <p>
@@ -59,7 +59,7 @@
             </p>
             <hr />
             <p>
-              <span>Összesen</span> <span>{{ teljesArSzallitassal }} Ft</span>
+              <span>Összesen</span> <span>{{ formatCurrency(teljesArSzallitassal) }} Ft</span>
             </p>
             <a @click="placeOrder" href="#"
               ><i class="fa fa-shopping-cart"></i>Megrendelés</a
@@ -78,6 +78,11 @@ import { storeToRefs } from "pinia";
 import { useUserStore } from "../stores/userstore";
 import { useRouter } from "vue-router";
 const { status } = storeToRefs(useUserStore());
+
+function formatCurrency(amount) {
+    return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
 
 // get store
 const data = useShoppingStore();

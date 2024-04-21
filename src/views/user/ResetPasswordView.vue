@@ -1,21 +1,40 @@
 <template>
   <body>
-    <h1>Jelszó helyreállítás</h1>
-    <div>
-      <div>
-        <input type="password" v-model="newPassword" placeholder="Új jelszó" />
+    <div v-if="!pwresetsucces" class="password-reset-container">
+      <h1 class="password-reset-title">Jelszó helyreállítás</h1>
+      <div class="password-reset-form">
+        <input
+          type="password"
+          v-model="newPassword"
+          placeholder="Új jelszó"
+          class="password-input"
+        />
         <input
           type="password"
           v-model="confirmPassword"
           placeholder="Új jelszó megerősítése"
+          class="password-input"
         />
-        <p v-if="passwordsDontMatch" style="color: red">
+        <p v-if="passwordsDontMatch" class="password-error">
           A két jelszó nem egyezik meg!
         </p>
-        <button @click="changePassword" :disabled="passwordsDontMatch">
+        <p v-if="newPassword.length < 8" class="password-error">
+          A jelszónak legalább 8 karakter hosszúnak kell lennie!
+        </p>
+        <button
+          @click="changePassword"
+          :disabled="passwordsDontMatch || newPassword.length < 8"
+          class="password-change-button"
+        >
           Jelszó változtatás
         </button>
       </div>
+    </div>
+    <div v-else class="alert alert-success col-12 col-md-6 mx-auto">
+      <p class="text-center">
+        Sikeres jelszóváltoztatás,
+        <router-link to="/bejelentkezes">jelentkezz</router-link>be.
+      </p>
     </div>
   </body>
 </template>
@@ -30,6 +49,7 @@ const route = useRoute();
 const token = route.params.token;
 console.log(token);
 
+const pwresetsucces = ref(false);
 const newPassword = ref(""); // Új jelszó állapot létrehozása
 const confirmPassword = ref(""); // Megerősítő jelszó állapot létrehozása
 const passwordsDontMatch = computed(
@@ -37,12 +57,14 @@ const passwordsDontMatch = computed(
 );
 
 const changePassword = () => {
+  pwresetsucces.value = false;
   if (newPassword.value && newPassword.value === confirmPassword.value) {
     userservice
       .changePassword(token, newPassword.value)
       .then(() => {
         // Sikeres jelszóváltoztatás esetén itt végezhetsz további teendőket
         console.log("Jelszó sikeresen megváltoztatva");
+        pwresetsucces.value = true;
       })
       .catch((error) => {
         console.error("Hiba történt a jelszóváltoztatás során:", error);
@@ -82,98 +104,53 @@ body {
   background: #4070f4;
 }
 
-.wrapper {
-  position: relative;
-  max-width: 430px;
-  width: 100%;
-  background: #fff;
-  padding: 34px;
-  border-radius: 6px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+.password-reset-container {
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
 }
 
-.wrapper h2 {
-  position: relative;
-  font-size: 22px;
-  font-weight: 600;
-  color: #333;
+.password-reset-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
-.wrapper h2::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 3px;
-  width: 28px;
-  border-radius: 12px;
-  background: #4070f4;
-}
-
-.wrapper form {
-  margin-top: 30px;
-}
-
-.wrapper form .input-box {
-  height: 52px;
-  margin: 18px 0;
-}
-
-form .input-box input {
-  height: 100%;
-  width: 100%;
-  outline: none;
-  padding: 0 15px;
-  font-size: 17px;
-  font-weight: 400;
-  color: #333;
-  border: 1.5px solid #c7bebe;
-  border-bottom-width: 2.5px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-}
-
-.input-box input:focus,
-.input-box input:valid {
-  border-color: #4070f4;
-}
-
-form .policy {
+.password-reset-form {
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
 
-form h3 {
-  color: #707070;
-  font-size: 14px;
-  font-weight: 500;
-  margin-left: 10px;
-}
-
-.input-box.button input {
-  color: #fff;
-  letter-spacing: 1px;
-  border: none;
-  background: #4070f4;
-  cursor: pointer;
-}
-
-.input-box.button input:hover {
-  background: #0e4bf1;
-}
-
-form .text h3 {
-  color: #333;
+.password-input {
   width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.password-error {
+  color: red;
+  margin-bottom: 10px;
   text-align: center;
 }
 
-form .text h3 a {
-  color: #4070f4;
-  text-decoration: none;
+.password-change-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
 }
 
-form .text h3 a:hover {
-  text-decoration: underline;
+.password-change-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 </style>

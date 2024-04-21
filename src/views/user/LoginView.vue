@@ -31,7 +31,7 @@
         <div class="text">
           <h3>
             Nincs még felhasználód?
-            <a href="/regisztracio">Regisztrálj most!</a>
+            <router-link to="/regisztracio">Regisztrálj most!</router-link>
           </h3>
         </div>
         <div v-if="loginError" class="error-message">Hibás e-mail cím vagy jelszó!</div>

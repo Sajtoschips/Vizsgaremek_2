@@ -58,7 +58,7 @@
           <img :src="item.Image" :alt="item.ProductName" />
           <div class="text">
             <h3>{{ item.ProductName }}</h3>
-            <span>{{ item.RetailPrice }} Ft</span>
+            <span>{{ formatCurrency(item.RetailPrice) }} Ft</span>
             <br />
             <i @click="data.incrementQ(item)" class="bi bi-plus-circle"></i>
             <span class="mx-2">
@@ -71,7 +71,7 @@
           </div>
         </div>
         <br />
-        <h2>Összesen: {{ teljesAr }} Ft</h2>
+        <h2>Összesen: {{ formatCurrency(teljesAr) }} Ft</h2>
         <br />
         <router-link
           :to="{ name: 'Kosar' }"
@@ -141,19 +141,25 @@ import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import { useUserStore } from "../stores/userstore";
+import { useShoppingStore } from "../stores/shoppingStore";
+import { useToast } from "vue-toastification";
+import { ref, onMounted, onBeforeUnmount } from "vue";
+
 const { status, user } = storeToRefs(useUserStore());
 const { logout, login } = useUserStore();
 const router = useRouter();
 const loginForm = ref({});
 const logSuccess = ref(false);
 const loginError = ref(false);
-import { useShoppingStore } from "../stores/shoppingStore";
-import { useToast } from "vue-toastification";
-
 const toast = useToast();
 const data = useShoppingStore();
 
-import { ref, onMounted, onBeforeUnmount } from "vue";
+
+function formatCurrency(amount) {
+    return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+
 
 function onLogin() {
   loginError.value = false; // Alaphelyzetbe állítás minden bejelentkezési kísérlet előtt

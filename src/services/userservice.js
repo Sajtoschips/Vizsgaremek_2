@@ -48,12 +48,21 @@ export default {
       });
   },
   changePassword(token, newPassword) {
-    return Axios.post("/resetPassword", { token, "password":newPassword })
-      .then((resp) =>{
-        resp.data
-      }
-       )
+    return Axios.post("/resetPassword", { token, password: newPassword })
+      .then((resp) => {
+        resp.data;
+      })
       .catch((err) => Promise.reject(err.response));
-  
-    },
-  };
+  },
+  updateUser(token, updatedData) {
+    return Axios.post("/updateProfile", updatedData, {
+      headers: { Authorization: "Bearer " + token },
+    })
+      .then((resp) => {
+        return resp;
+      })
+      .catch((err) => {
+        return Promise.reject(err.response);
+      });
+  },
+};

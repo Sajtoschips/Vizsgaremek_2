@@ -22,6 +22,9 @@ const actualPage = ref(1);
 const lastPage = ref(1)
 const isPaged = ref(false)
 
+function formatCurrency(amount) {
+    return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 
 
 onMounted(() => {
@@ -143,8 +146,8 @@ const addToCart = (product) => {
                 <div class="card-body">
                   <h5 class="card-title text-center">{{ product.ProductName }}</h5>
                   <div class="card-text text-center">
-                    <p>Régi ár: <s>{{ product.RetailPrice * 1.2 }} Ft</s></p>
-                    <p>Új ár: {{ product.RetailPrice }} Ft</p>
+                    <p>Régi ár: <s>{{ formatCurrency(product.RetailPrice * 1.2) }} Ft</s></p>
+                    <p>Új ár: {{ formatCurrency(product.RetailPrice) }} Ft</p>
                     <a @click="addToCart(product)" class="buy btn btn-primary">Kosárba</a>
                   </div>
                 </div>

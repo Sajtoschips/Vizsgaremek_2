@@ -16,6 +16,8 @@ import SendEmail from '../views/user/sendEmail.vue'
 import Csapat from '../views/TeamView.vue'
 import ProfileView from '../views/user/UserProfileView.vue'
 import AdminView from '../views/user/AdminPage.vue'
+import AddProductView from '../views/productsViews/AddProductView.vue'
+import ModifyProductView from '../views/productsViews/ModifyProductView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -35,7 +37,8 @@ const router = createRouter({
     { path: '/csapat', name: "Csapat", component: Csapat },
     { path: '/profil', name: "Profil", component: ProfileView },
     { path: '/admin', name: "Admin", component: AdminView },
-
+    { path: '/add-product', name: "AddProduct", component: AddProductView },
+    { path: '/modify-product/:productId', name: "ModifyProduct", component: ModifyProductView },
   ]
 })
 

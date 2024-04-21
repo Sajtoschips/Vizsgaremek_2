@@ -37,7 +37,7 @@
                     </div>
                     <div class="contentBox">
                         <h3>{{ product.ProductName }}</h3>
-                        <h2 class="price">{{ product.RetailPrice }} Ft</h2>
+                        <h2 class="price">{{ formatCurrency(product.RetailPrice) }} Ft</h2>
                         <a  @click="addToCart(product)" class="buy">Vásárlás</a>
                     </div>
                 </div>
@@ -78,6 +78,10 @@ const actualPage = ref(1);
 const lastPage = ref(1)
 const isPaged = ref(false)
 
+
+function formatCurrency(amount) {
+    return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 
 
 onMounted(() => {

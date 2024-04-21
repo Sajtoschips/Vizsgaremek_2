@@ -16,7 +16,6 @@
 
 
         <div class="container-fluid" style="padding-top: 5rem; padding-bottom: 8rem">
-
             <div class="card-wrapper">
                 <div class="card">
                     <!-- card left -->
@@ -36,7 +35,7 @@
 
 
                         <div class="product-price">
-                            <p class="price">Ár: <span>{{ SelectedProduct.RetailPrice }} Ft</span></p>
+                            <p class="price">Ár: <span>{{ formatCurrency(SelectedProduct.RetailPrice) }} Ft</span></p>
                         </div>
 
                         <div class="product-detail">
@@ -68,6 +67,11 @@
 import { ref, onMounted, computed } from "vue";
 import { useRoute } from "vue-router";
 import { useShoppingStore } from "../../stores/shoppingStore";
+
+
+function formatCurrency(amount) {
+    return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 
 
 const selectedCategory = ref(null);

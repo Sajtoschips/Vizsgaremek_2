@@ -1,6 +1,9 @@
 <template>
     <div class="container-fluid" style="padding-bottom: 5rem; padding-top: 8rem;">
         <h1 class="text-center">Termékek kezelése a webshop-ban</h1>
+        <div class="d-flex justify-content-end mb-3 mx-5">
+            <router-link to="/add-product" class="btn btn-primary">Termék hozzáadása</router-link>
+        </div>
         <div class="d-flex justify-content-center align-items-center mt-5">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
@@ -26,10 +29,10 @@
                 <tr class="text-center align-middle">
                     <th class="text-center" scope="row">{{ product.ProductNumber }}</th>
                     <td>{{ product.ProductName }}</td>
-                    <td>{{ product.RetailPrice }}</td>
+                    <td>{{ formatCurrency(product.RetailPrice) }} Ft</td>
                     <td>
                         <div class="d-flex justify-content-center">
-                            <button class="btn btn-success mx-2">Módosítás</button>
+                            <button class="btn btn-success mx-2" @click="modifyProduct(product)">Módosítás</button>
                             <button class="btn btn-danger" @click="deleteProduct(product.ProductNumber)">Törlés</button>
                         </div>
                     </td>
@@ -55,6 +58,10 @@ import {
 } from "vue-router";
 import { useUserStore } from "../../stores/userstore";
 
+function formatCurrency(amount) {
+    return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
 
 const shoppingStore = useShoppingStore();
 
@@ -63,7 +70,15 @@ const actualPage = ref(1);
 const lastPage = ref(1)
 const isPaged = ref(false)
 const userStore = useUserStore();
+const router = useRouter();
 
+
+function modifyProduct(product) {
+  router.push({
+    name: "ModifyProduct", 
+    params: { productId: product.ProductNumber } 
+  });
+}
 
 onMounted(() => {
     shoppingStore.fetchProducts();

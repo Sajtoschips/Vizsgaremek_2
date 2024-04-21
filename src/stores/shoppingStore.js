@@ -141,42 +141,6 @@ export const useShoppingStore = defineStore("cart", {
       });
       saveToStorage("cartItems", this.cartItems);
     },
-    fetchOrders() {
-      try {
-        const user = JSON.parse(sessionStorage.getItem("user"));
-        const userToken = user.token;
-        const config = {
-          headers: {
-            Authorization: `Bearer ${userToken}`,
-          },
-        };
-
-        Axios.get("/OrdersByUser", config)
-          .then((resp) => {
-            console.log("API válasz:", resp.data);
-            localStorage.setItem("orders", JSON.stringify(resp.data));
-            const ordersArray = Array.from(resp.data);
-            console.log("Rendelések tömb:", ordersArray);
-            // Az új struktúrájú tömbet mentjük az orders változóba
-            this.orders = ordersArray;
-            console.log("Rendelések:", this.orders);
-          })
-          .catch((error) => {
-            console.error("Hiba történt a rendelések lekérése során:", error);
-          });
-      } catch (error) {
-        console.error("Hiba történt a rendelések lekérése során:", error);
-      }
-    },
-    // loadOrders() {
-    //   // betöltjük a localStorage-ból
-    //   const savedOrders = localStorage.getItem("orders");
-    //   if (savedOrders) {
-    //     this.orders = JSON.parse(savedOrders);
-    //   } else {
-    //     this.fetchOrders();
-    //   }
-    // },
   },
 });
 function loadFromStorage(key) {
