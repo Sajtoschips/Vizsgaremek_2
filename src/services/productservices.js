@@ -89,7 +89,7 @@ export default {
   },
 
   ModifyProductByAdmin(id, data, token) {
-    return Axios.put("/updateProducts/" + id, data, {
+    return Axios.post("/updateProducts/" + id, data, {
       headers: { Authorization: "Bearer " + token },
     })
       .then((resp) => {
@@ -99,6 +99,7 @@ export default {
         return Promise.reject(err.response);
       });
   },
+
   MakeProductByAdmin(data, token) {
     return Axios.post("/makeProducts", data, {
       headers: { Authorization: "Bearer " + token },

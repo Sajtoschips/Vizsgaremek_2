@@ -142,7 +142,7 @@ const addToCart = (product) => {
           <div class="row row-cols-1 row-cols-md-3 g-5  ">
             <div v-for="product in products" :key="product.ProductID" class="col">
               <div class="card h-100 mx-auto" style="width: 18rem;">
-                <img @click="goToProductPage(product.ProductName)" :src="product.Image" class="card-img-top">
+                <img style="cursor: pointer;" @click="goToProductPage(product.ProductName)" :src="product.Image" class="card-img-top">
                 <div class="card-body">
                   <h5 class="card-title text-center">{{ product.ProductName }}</h5>
                   <div class="card-text text-center">
@@ -181,6 +181,7 @@ body {
   /* Képek arányának megőrzése a carousel-ban */
   max-height: 100%;
   /* Képek maximális magassága a carousel-ban */
+  
 }
 
 .card {
@@ -301,6 +302,7 @@ a {
   align-items: center;
   /* padding-top: 20px; */
   z-index: 1;
+  cursor: pointer;
 }
 
 /*

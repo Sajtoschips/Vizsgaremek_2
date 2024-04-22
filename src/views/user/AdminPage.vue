@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid" style="padding-bottom: 5rem; padding-top: 8rem;">
+    <div class="container" style="padding-bottom: 5rem; padding-top: 8rem;">
         <h1 class="text-center">Termékek kezelése a webshop-ban</h1>
         <div class="d-flex justify-content-end mb-3 mx-5">
             <router-link to="/add-product" class="btn btn-primary">Termék hozzáadása</router-link>
@@ -58,10 +58,9 @@ import {
 } from "vue-router";
 import { useUserStore } from "../../stores/userstore";
 
-function formatCurrency(amount) {
-    return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-}
+import { useToast } from "vue-toastification";
 
+const toast = useToast();
 
 const shoppingStore = useShoppingStore();
 
@@ -72,12 +71,15 @@ const isPaged = ref(false)
 const userStore = useUserStore();
 const router = useRouter();
 
+function formatCurrency(amount) {
+    return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 
 function modifyProduct(product) {
-  router.push({
-    name: "ModifyProduct", 
-    params: { productId: product.ProductNumber } 
-  });
+    router.push({
+        name: "ModifyProduct",
+        params: { productId: product.ProductNumber }
+    });
 }
 
 onMounted(() => {
@@ -105,12 +107,16 @@ function getPorducts(page) {
     });
 }
 
-function deleteProduct(id){
-    productservices.deleteProductByAdmin(id, userStore.user.token).then((resp) => {
-        console.log(resp);
-    });
+function deleteProduct(id) {
+    const confirmDelete = confirm("Biztosan törölni szeretnéd ezt a terméket?");
+    if (confirmDelete) {
+        productservices.deleteProductByAdmin(id, userStore.user.token).then((resp) => {
+            toast.error("Termék törölve!");
+            console.log(resp);
+            location.reload()
+        });
+    }
 }
-
 
 
 </script>

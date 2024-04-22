@@ -231,6 +231,8 @@ const toggleUser = () => {
 
 <style scoped>
 
+
+
 i{
   cursor: pointer;
 }
@@ -520,8 +522,11 @@ li {
 }
 
 .user a {
-  text-decoration: underline;
   color: #00afea;
+}
+
+.user a:hover {
+  color: var(--text-color);
 }
 
 .user.active {
