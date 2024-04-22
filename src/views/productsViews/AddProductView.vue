@@ -33,6 +33,9 @@
         <button class="btn btn-success" @click="saveProductData">
           Termék felvétele
         </button>
+        <router-link to="/admin" class="btn btn-primary ms-2">
+          Mégse
+        </router-link>
       </div>
     </div>
   </div>

@@ -99,7 +99,9 @@ function onRegister() {
     })
     .catch((err) => {
       // console.log(err.data.data);
-      errorMessages.value = err.data.data;
+      if (err.status === 422) {
+        alert("Az email már használatban van vagy nem elég hosszú a jelszó")
+      }
     });
 }
 </script>

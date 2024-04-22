@@ -24,11 +24,6 @@
                     </div>
                 </nav>
             </div>
-            <!-- <div class=""> -->
-            <!-- Side Navigation -->
-
-            <!-- Products -->
-
 
             <div class="row justify-content-center">
                 <div class="col-3 card m-1 mb-5 card-deck" v-for="product in products" :key="product.ProductID">
@@ -140,44 +135,6 @@ const addToCart = (product) => {
 </script>
 
 <style scoped>
-/* img {
-  width: 100%;
-  height: auto;
-  width: 50%;
-  height: auto;
-  cursor: pointer;
-}
-
-.card {
-  width: 100%;
-  height: 100%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card-img-top {
-  width: 100%;
-  height: 50%;
-  object-fit: cover;
-}
-
-.card-body {
-  padding: 1.25rem;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.list-group {
-  margin: 10px;
-  border: 1px black solid;
-
-}
-
-a:hover {
-  cursor: pointer;
-} */
 
 * {
     margin: 0;
@@ -238,18 +195,6 @@ a {
     z-index: 1;
 }
 
-/*
-.card .imgBox img {
-    max-width: 100%;
-
-    transition: .5s;
-}
-
-.card:hover .imgBox img {
-    max-width: 50%;
-
-}
-*/
 .card .contentBox {
     position: relative;
     padding: 20px;
